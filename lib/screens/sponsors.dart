@@ -1,10 +1,7 @@
-import 'package:aarohan_app/widgets/bottomMenu.dart';
 import 'package:aarohan_app/widgets/topBar.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 import 'package:aarohan_app/widgets/custom_gesture_detector.dart';
-import 'dart:ui';
-import 'package:from_css_color/from_css_color.dart';
 import 'package:provider/provider.dart';
 import 'package:aarohan_app/models/sponsor.dart';
 import 'package:cached_network_image/cached_network_image.dart';

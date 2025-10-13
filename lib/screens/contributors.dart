@@ -1,10 +1,6 @@
-import 'package:aarohan_app/widgets/bottomMenu.dart';
 import 'package:aarohan_app/widgets/topBar.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
-import 'package:aarohan_app/widgets/custom_gesture_detector.dart';
-import 'dart:ui';
-import 'package:from_css_color/from_css_color.dart';
 import 'package:provider/provider.dart';
 import 'package:aarohan_app/models/contributor.dart';
 import 'package:url_launcher/url_launcher.dart' as UrlLauncher;
@@ -175,10 +171,7 @@ class _ContributorsState extends State<Contributors> {
                                               children: [
                                                 Expanded(
                                                     child: Text(
-                                                  (contributorItems == null ||
-                                                          contributorItems
-                                                                  .length ==
-                                                              0)
+                                                  (contributorItems.length == 0)
                                                       ? ''
                                                       : '${contributorItems[index].name}',
                                                   textAlign: TextAlign.center,

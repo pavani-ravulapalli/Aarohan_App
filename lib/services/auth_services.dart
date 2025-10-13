@@ -3,7 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:aarohan_app/models/user.dart';
-import 'package:aarohan_app/resources/eurekoin.dart';
 
 class AuthService {
   static final FirebaseAuth _auth = FirebaseAuth.instance;

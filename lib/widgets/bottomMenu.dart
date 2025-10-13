@@ -1,22 +1,12 @@
 import 'dart:ui';
 
-import 'package:aarohan_app/resources/eurekoin.dart';
 import 'package:aarohan_app/widgets/menuItems.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/widgets.dart';
 import 'package:outline_gradient_button/outline_gradient_button.dart';
-import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
 
-import '../models/coming_soon.dart';
 import '../models/user.dart';
 import '../services/auth_services.dart';
 
@@ -112,12 +102,10 @@ class _BottomMenuState extends State<BottomMenu> {
     getuser();
     // List<ComingItem> comingItems = Provider.of<List<ComingItem>>(context);
     Users? users;
-    if (Users.us != null) {
-      setState(() {
-        users = Users.us;
-        // print(Users.us.email);
-      });
-    }
+    setState(() {
+      users = Users.us;
+      // print(Users.us.email);
+    });
 
     return WillPopScope(
       onWillPop: () async {

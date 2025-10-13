@@ -1,4 +1,3 @@
-import 'package:aarohan_app/widgets/splash-rotating-bg.dart';
 import 'package:flutter/material.dart';
 import 'package:outline_gradient_button/outline_gradient_button.dart';
 import 'package:sizer/sizer.dart';
@@ -45,7 +44,8 @@ class _LoginState extends State<Login> {
                 body: Container(
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage("assets/aarhn-splash2k25.jpeg"),
+                      image: AssetImage(
+                          "assets/Gemini_Generated_Image_tozc77tozc77tozc.png"),
                       colorFilter: ColorFilter.mode(
                           Color.fromARGB(40, 0, 5, 26), BlendMode.srcOver),
                       fit: BoxFit.cover,
@@ -57,10 +57,10 @@ class _LoginState extends State<Login> {
                         height: MediaQuery.of(context).size.height * 0.1,
                       ),
                       SizedBox(
-                        height: 3.7.h,
+                        height: 3.h,
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(left: 8),
+                        padding: const EdgeInsets.only(left: 13.5),
                         child: Stack(
                           alignment: Alignment.center,
                           children: [
@@ -74,21 +74,24 @@ class _LoginState extends State<Login> {
                             CircleAvatar(
                               radius: 28.5.w,
                               backgroundImage: AssetImage(
-                                'assets/aarhn_logo2k25.png',
+                                'assets/aarohan_logo.png',
                               ),
                             ),
                           ],
                         ),
                       ),
                       SizedBox(
-                        height: 8.h,
+                        height: 5.h,
                       ),
                       Padding(
                         padding: const EdgeInsets.all(4.0),
                         child: Image.asset(
-                          'assets/aarhn25-text.png',
-                          height: 50,
+                          'assets/aarohan_text.png',
+                          height: 90,
                         ),
+                      ),
+                      SizedBox(
+                        height: 2.h,
                       ),
                       Padding(
                         padding: const EdgeInsets.all(4.0),

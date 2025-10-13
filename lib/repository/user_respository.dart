@@ -12,7 +12,9 @@ class UserRepository with ChangeNotifier {
   Status _status = Status.Uninitialized;
 
   UserRepository.instance() : _auth = FirebaseAuth.instance {
-    _auth.authStateChanges().listen(_onAuthStateChanged as void Function(User? event)?);
+    _auth
+        .authStateChanges()
+        .listen(_onAuthStateChanged as void Function(User? event)?);
   }
 
   Status get status => _status;
@@ -37,14 +39,10 @@ class UserRepository with ChangeNotifier {
   }
 
   Future _onAuthStateChanged(User firebaseUser) async {
-    if (firebaseUser == null) {
-      _status = Status.Unauthenticated;
-    } else {
-      _user = firebaseUser;
-      _status = Status.Authenticated;
-      // AuthService authService = AuthService();
-      // await authService.storeUser(firebaseUser);
-    }
+    _user = firebaseUser;
+    _status = Status.Authenticated;
+    // AuthService authService = AuthService();
+    // await authService.storeUser(firebaseUser);
     notifyListeners();
   }
 }

@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
@@ -113,7 +111,8 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
           decoration: BoxDecoration(
             image: DecorationImage(
               //opacity: 0.9,
-              image: AssetImage("assets/aarhn_new_bg2k25.png"),
+              image: AssetImage(
+                  "assets/Gemini_Generated_Image_ih1t9sih1t9sih1t (1).png"),
               fit: BoxFit.cover,
               colorFilter: new ColorFilter.mode(
                   Color.fromARGB(88, 9, 75, 87), BlendMode.srcOver),
@@ -123,604 +122,629 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
             resizeToAvoidBottomInset: false,
             backgroundColor: Color.fromARGB(39, 0, 0, 0),
             body: Stack(children: [
-              Column(
-                children: [
-                  Visibility(
-                    visible: search,
-                    child: Container(
-                      margin:
-                          EdgeInsets.symmetric(vertical: 2.h, horizontal: 2.w),
-                      decoration: BoxDecoration(
-                        // color: Color.fromRGBO(25, 102, 154, 0.5),
-                        gradient: LinearGradient(colors: [
-                          Color.fromRGBO(2, 84, 114, 0.88),
-                          Color.fromRGBO(29, 95, 117, 0.865),
-                        ]),
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      child: Padding(
-                        padding:
-                            EdgeInsets.fromLTRB(1.5.w, 1.5.h, 1.5.w, 1.5.h),
-                        child: Column(
-                          children: [
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                SizedBox(
-                                  width: 3.w,
-                                ),
-                                Container(
-                                  width: 70.w,
-                                  decoration: BoxDecoration(
-                                      // color: Colors.red,
-                                      border: Border.all(
-                                          color: Color.fromRGBO(
-                                              255, 255, 255, 0.318),
-                                          width: 0.5.w),
-                                      borderRadius:
-                                          BorderRadius.circular(10.sp)),
-                                  child: Padding(
-                                    padding: EdgeInsets.all(1.sp),
-                                    child: TextField(
-                                      onTap: () {
-                                        setState(() {
-                                          // selectedIndex = -1;
-                                          print(selectedIndex);
-                                        });
-                                      },
-                                      style: TextStyle(
-                                        fontFamily: 'Mons',
-                                        fontSize: 13.sp,
-                                        color: Colors.white,
-                                        letterSpacing: 1,
+              SingleChildScrollView(
+                // <-- Added scroll view
+                child: Column(
+                  children: [
+                    Visibility(
+                      visible: search,
+                      child: Container(
+                        margin: EdgeInsets.symmetric(
+                            vertical: 2.h, horizontal: 2.w),
+                        decoration: BoxDecoration(
+                          // color: Color.fromRGBO(25, 102, 154, 0.5),
+                          gradient: LinearGradient(colors: [
+                            Color.fromRGBO(2, 84, 114, 0.88),
+                            Color.fromRGBO(29, 95, 117, 0.865),
+                          ]),
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                        child: Padding(
+                          padding:
+                              EdgeInsets.fromLTRB(1.5.w, 1.5.h, 1.5.w, 1.5.h),
+                          child: Column(
+                            children: [
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  SizedBox(
+                                    width: 3.w,
+                                  ),
+                                  Container(
+                                    width: 70.w,
+                                    decoration: BoxDecoration(
+                                        // color: Colors.red,
+                                        border: Border.all(
+                                            color: Color.fromRGBO(
+                                                255, 255, 255, 0.318),
+                                            width: 0.5.w),
+                                        borderRadius:
+                                            BorderRadius.circular(10.sp)),
+                                    child: Padding(
+                                      padding: EdgeInsets.all(1.sp),
+                                      child: TextField(
+                                        onTap: () {
+                                          setState(() {
+                                            // selectedIndex = -1;
+                                            print(selectedIndex);
+                                          });
+                                        },
+                                        style: TextStyle(
+                                          fontFamily: 'Mons',
+                                          fontSize: 13.sp,
+                                          color: Colors.white,
+                                          letterSpacing: 1,
+                                        ),
+                                        onChanged: (value) {
+                                          // setState(() {
+                                          //   selectedIndex = -1;
+                                          // });
+                                          _runFilter(value, eventItems!,
+                                              selectedIndex);
+                                        },
+                                        decoration: InputDecoration(
+                                            contentPadding:
+                                                EdgeInsets.all(10.sp),
+                                            border: InputBorder.none,
+                                            hintText: 'Search',
+                                            hintStyle: TextStyle(
+                                                color: Colors.white,
+                                                fontFamily: 'Mons',
+                                                fontSize: 15.sp,
+                                                fontWeight: FontWeight.w500),
+                                            labelStyle: TextStyle(
+                                                color: Colors.white,
+                                                fontFamily: 'Mons',
+                                                fontSize: 15.sp,
+                                                fontWeight: FontWeight.w500)),
+                                        //
                                       ),
-                                      onChanged: (value) {
-                                        // setState(() {
-                                        //   selectedIndex = -1;
-                                        // });
-                                        _runFilter(
-                                            value, eventItems!, selectedIndex);
-                                      },
-                                      decoration: InputDecoration(
-                                          contentPadding: EdgeInsets.all(10.sp),
-                                          border: InputBorder.none,
-                                          hintText: 'Search',
-                                          hintStyle: TextStyle(
-                                              color: Colors.white,
-                                              fontFamily: 'Mons',
-                                              fontSize: 15.sp,
-                                              fontWeight: FontWeight.w500),
-                                          labelStyle: TextStyle(
-                                              color: Colors.white,
-                                              fontFamily: 'Mons',
-                                              fontSize: 15.sp,
-                                              fontWeight: FontWeight.w500)),
-                                      //
                                     ),
                                   ),
+                                  Padding(
+                                    padding: EdgeInsets.fromLTRB(5.w, 0, 0, 0),
+                                    child: InkWell(
+                                      onTap: () {
+                                        setState(() {
+                                          search = !search;
+                                        });
+                                      },
+                                      child: Column(
+                                        children: [
+                                          Icon(
+                                            Icons.cancel,
+                                            size: 25.sp,
+                                            color:
+                                                Color.fromRGBO(232, 94, 86, 1),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                              SizedBox(
+                                height: 1.5.h,
+                              ),
+                              Container(
+                                height: 4.h,
+                                child: ListView.builder(
+                                  shrinkWrap: true,
+                                  scrollDirection: Axis.horizontal,
+                                  itemCount: tags.length,
+                                  itemBuilder: (context, index) {
+                                    return InkWell(
+                                      radius: 7.sp,
+                                      borderRadius: BorderRadius.circular(7.sp),
+                                      onTap: () {
+                                        // setState(
+                                        //   () {
+                                        //     selectedIndex = index;
+                                        //     _foundUsers = eventItems!
+                                        //         .where((element) => (element.tag!
+                                        //             .contains(tags[index])))
+                                        //         .toList();
+                                        //   },
+                                        // );
+                                        if (selectedIndex == index) {
+                                          setState(() {
+                                            selectedIndex = -1;
+                                            _foundUsers = eventItems;
+                                          });
+                                        } else {
+                                          setState(() {
+                                            selectedIndex = index;
+                                            _foundUsers = eventItems!
+                                                .where((element) => (element
+                                                    .tag!
+                                                    .contains(tags[index])))
+                                                .toList();
+                                          });
+                                        }
+                                      },
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                            color: (selectedIndex == index)
+                                                ? Color.fromRGBO(
+                                                    51, 130, 154, 0.75)
+                                                : const Color.fromARGB(
+                                                    0, 0, 0, 0),
+                                            borderRadius:
+                                                BorderRadius.circular(7.sp)),
+                                        alignment: Alignment.center,
+                                        margin: EdgeInsets.symmetric(
+                                            horizontal: 1.w),
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 2.w),
+                                        child: Text(
+                                          '${tags[index]}',
+                                          style: TextStyle(
+                                              color: Color.fromRGBO(
+                                                  255, 255, 255, 1),
+                                              fontFamily: 'Poppins',
+                                              fontWeight: FontWeight.w500),
+                                        ),
+                                      ),
+                                    );
+                                  },
                                 ),
-                                Padding(
-                                  padding: EdgeInsets.fromLTRB(5.w, 0, 0, 0),
-                                  child: InkWell(
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    Visibility(
+                      visible: !search,
+                      child: Container(
+                        margin: EdgeInsets.symmetric(
+                          vertical: 2.h,
+                          horizontal: 2.5.w,
+                        ),
+                        child: OutlineGradientButton(
+                          strokeWidth: 3,
+                          radius: Radius.circular(17),
+                          gradient: LinearGradient(
+                            begin: Alignment.bottomLeft,
+                            end: Alignment.topRight,
+                            colors: [
+                              Color(0xFFFF4E02),
+                              Color.fromARGB(122, 251, 70, 10),
+                              Colors.grey.shade800,
+                              const Color.fromARGB(110, 175, 175, 175),
+                            ],
+                          ),
+                          padding: EdgeInsets.all(0),
+                          child: Container(
+                            margin: EdgeInsets.symmetric(
+                                horizontal: 0.85.w, vertical: 0.8.w),
+                            alignment: Alignment.bottomCenter,
+                            decoration: BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(15)),
+                              gradient: LinearGradient(
+                                colors: [
+                                  Color.fromRGBO(16, 59, 73, 0.76),
+                                  Color.fromRGBO(78, 178, 208, 0.767),
+                                ],
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                              ),
+                            ),
+                            height: 8.h,
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 4.w),
+                              child: Row(
+                                // crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  CircleAvatar(
+                                    radius: 23,
+                                    backgroundImage:
+                                        AssetImage('assets/aarohan_logo.png'),
+                                  ),
+                                  Padding(
+                                    padding:
+                                        EdgeInsets.symmetric(vertical: 0.1),
+                                    child: Center(
+                                      child: Image.asset(
+                                        'assets/aarohan_text.png', // <-- Use image instead of text
+                                        height: 7.h, // Adjust height as needed
+                                        fit: BoxFit.contain,
+                                      ),
+                                    ),
+                                  ),
+                                  InkWell(
                                     onTap: () {
+                                      setState(() {
+                                        _foundUsers = eventItems!;
+                                      });
                                       setState(() {
                                         search = !search;
                                       });
                                     },
-                                    child: Column(
-                                      children: [
-                                        Icon(
-                                          Icons.cancel,
-                                          size: 25.sp,
-                                          color: Color.fromRGBO(232, 94, 86, 1),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
-                            SizedBox(
-                              height: 1.5.h,
-                            ),
-                            Container(
-                              height: 4.h,
-                              child: ListView.builder(
-                                shrinkWrap: true,
-                                scrollDirection: Axis.horizontal,
-                                itemCount: tags.length,
-                                itemBuilder: (context, index) {
-                                  return InkWell(
-                                    radius: 7.sp,
-                                    borderRadius: BorderRadius.circular(7.sp),
-                                    onTap: () {
-                                      // setState(
-                                      //   () {
-                                      //     selectedIndex = index;
-                                      //     _foundUsers = eventItems!
-                                      //         .where((element) => (element.tag!
-                                      //             .contains(tags[index])))
-                                      //         .toList();
-                                      //   },
-                                      // );
-                                      if (selectedIndex == index) {
-                                        setState(() {
-                                          selectedIndex = -1;
-                                          _foundUsers = eventItems;
-                                        });
-                                      } else {
-                                        setState(() {
-                                          selectedIndex = index;
-                                          _foundUsers = eventItems!
-                                              .where((element) => (element.tag!
-                                                  .contains(tags[index])))
-                                              .toList();
-                                        });
-                                      }
-                                    },
                                     child: Container(
                                       decoration: BoxDecoration(
-                                          color: (selectedIndex == index)
-                                              ? Color.fromRGBO(
-                                                  51, 130, 154, 0.75)
-                                              : const Color.fromARGB(
-                                                  0, 0, 0, 0),
+                                          color: const Color.fromARGB(
+                                              0, 97, 97, 97),
+                                          border: Border.all(
+                                              color: Color.fromRGBO(
+                                                  155, 204, 239, 1),
+                                              width: 0.1.w),
                                           borderRadius:
-                                              BorderRadius.circular(7.sp)),
-                                      alignment: Alignment.center,
-                                      margin:
-                                          EdgeInsets.symmetric(horizontal: 1.w),
-                                      padding:
-                                          EdgeInsets.symmetric(horizontal: 2.w),
-                                      child: Text(
-                                        '${tags[index]}',
-                                        style: TextStyle(
-                                            color: Color.fromRGBO(
-                                                255, 255, 255, 1),
-                                            fontFamily: 'Poppins',
-                                            fontWeight: FontWeight.w500),
+                                              BorderRadius.circular(2.w)),
+                                      child: Padding(
+                                        padding: EdgeInsets.only(top: 0.5.h),
+                                        child: Image.asset('assets/search.png'),
                                       ),
+                                      height: 5.h,
+                                      width: 11.w,
                                     ),
-                                  );
-                                },
+                                  ),
+                                ],
                               ),
-                            )
-                          ],
+                            ),
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  Visibility(
-                    visible: !search,
-                    child: Container(
-                      margin: EdgeInsets.symmetric(
-                        vertical: 2.h,
-                        horizontal: 2.5.w,
-                      ),
-                      child: OutlineGradientButton(
-                        strokeWidth: 3,
-                        radius: Radius.circular(17),
-                        gradient: LinearGradient(
-                          begin: Alignment.bottomLeft,
-                          end: Alignment.topRight,
-                          colors: [
-                            Color(0xFFFF4E02),
-                            Color.fromARGB(122, 251, 70, 10),
-                            Colors.grey.shade800,
-                            const Color.fromARGB(110, 175, 175, 175),
-                          ],
-                        ),
-                        padding: EdgeInsets.all(0),
-                        child: Container(
-                          margin: EdgeInsets.symmetric(
-                              horizontal: 0.85.w, vertical: 0.8.w),
-                          alignment: Alignment.bottomCenter,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(15)),
-                            gradient: LinearGradient(
-                              colors: [
-                                Color.fromRGBO(16, 59, 73, 0.76),
-                                Color.fromRGBO(78, 178, 208, 0.767),
-                              ],
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                            ),
+                    Visibility(
+                      visible: !search,
+                      child: Container(
+                        margin: EdgeInsets.symmetric(
+                            horizontal: 2.w, vertical: 1.h),
+                        height: 7.5.h,
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            colors: [
+                              Color.fromRGBO(16, 59, 73, 0.47),
+                              Color.fromRGBO(78, 177, 208, 0.38),
+                            ],
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
                           ),
-                          height: 8.h,
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 4.w),
-                            child: Row(
-                              // crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                CircleAvatar(
-                                  radius: 23,
-                                  backgroundImage:
-                                      AssetImage('assets/aarhn_logo2k25.png'),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Color.fromARGB(129, 0, 183, 255),
+                              blurRadius: 15,
+                              offset: Offset(6, 4),
+                              spreadRadius: 0,
+                            ),
+                            BoxShadow(
+                              color: Color.fromARGB(94, 0, 168, 132),
+                              blurRadius: 27,
+                              offset: Offset(23, 14),
+                              spreadRadius: 0,
+                            ),
+                            BoxShadow(
+                              color: Color(0x38000000),
+                              blurRadius: 37,
+                              offset: Offset(52, 32),
+                              spreadRadius: 0,
+                            ),
+                            BoxShadow(
+                              color: Color.fromARGB(15, 0, 255, 213),
+                              blurRadius: 44,
+                              offset: Offset(93, 57),
+                              spreadRadius: 0,
+                            ),
+                            BoxShadow(
+                              color: Color.fromARGB(0, 0, 0, 0),
+                              blurRadius: 48,
+                              offset: Offset(145, 89),
+                              spreadRadius: 0,
+                            )
+                          ],
+                          borderRadius: BorderRadius.circular(
+                            20.0,
+                          ),
+                        ),
+                        child: OutlineGradientButton(
+                          strokeWidth: 2,
+                          radius: Radius.circular(15),
+                          gradient: LinearGradient(
+                            colors: [
+                              const Color.fromARGB(109, 143, 142, 142),
+                              const Color.fromARGB(122, 92, 90, 90),
+                              Color.fromARGB(160, 251, 70, 10),
+                              Color.fromARGB(230, 251, 70, 10),
+                            ],
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Container(
+                                margin: EdgeInsets.symmetric(
+                                    horizontal: 2.w, vertical: 0.1.h),
+                                decoration: BoxDecoration(
+                                  color: (selectedcategory == "All")
+                                      ? Color.fromRGBO(255, 255, 255, 0.288)
+                                      : const Color.fromARGB(0, 255, 255, 255),
+                                  borderRadius: BorderRadius.circular(20.0),
                                 ),
-                                Padding(
-                                  padding: EdgeInsets.only(top: 1.25.h),
-                                  child: Center(
-                                    child: Text(
-                                      "Aarohan",
-                                      style: TextStyle(
-                                        fontFamily: 'B Biger Over',
-                                        fontSize: 29.sp,
-                                        color: Color.fromRGBO(255, 255, 255, 1),
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                InkWell(
+                                child: InkWell(
+                                  radius: 20,
+                                  borderRadius: BorderRadius.circular(20.0),
                                   onTap: () {
                                     setState(() {
-                                      _foundUsers = eventItems!;
-                                    });
-                                    setState(() {
-                                      search = !search;
+                                      arr = eventItems!;
+                                      selectedcategory = "All";
+                                      day = "0";
                                     });
                                   },
                                   child: Container(
-                                    decoration: BoxDecoration(
-                                        color:
-                                            const Color.fromARGB(0, 97, 97, 97),
-                                        border: Border.all(
-                                            color: Color.fromRGBO(
-                                                155, 204, 239, 1),
-                                            width: 0.1.w),
-                                        borderRadius:
-                                            BorderRadius.circular(2.w)),
-                                    child: Padding(
-                                      padding: EdgeInsets.only(top: 0.5.h),
-                                      child: Image.asset('assets/search.png'),
-                                    ),
-                                    height: 5.h,
-                                    width: 11.w,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Visibility(
-                    visible: !search,
-                    child: Container(
-                      margin:
-                          EdgeInsets.symmetric(horizontal: 2.w, vertical: 1.h),
-                      height: 7.5.h,
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: [
-                            Color.fromRGBO(16, 59, 73, 0.47),
-                            Color.fromRGBO(78, 177, 208, 0.38),
-                          ],
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                        ),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Color.fromARGB(129, 0, 183, 255),
-                            blurRadius: 15,
-                            offset: Offset(6, 4),
-                            spreadRadius: 0,
-                          ),
-                          BoxShadow(
-                            color: Color.fromARGB(94, 0, 168, 132),
-                            blurRadius: 27,
-                            offset: Offset(23, 14),
-                            spreadRadius: 0,
-                          ),
-                          BoxShadow(
-                            color: Color(0x38000000),
-                            blurRadius: 37,
-                            offset: Offset(52, 32),
-                            spreadRadius: 0,
-                          ),
-                          BoxShadow(
-                            color: Color.fromARGB(15, 0, 255, 213),
-                            blurRadius: 44,
-                            offset: Offset(93, 57),
-                            spreadRadius: 0,
-                          ),
-                          BoxShadow(
-                            color: Color.fromARGB(0, 0, 0, 0),
-                            blurRadius: 48,
-                            offset: Offset(145, 89),
-                            spreadRadius: 0,
-                          )
-                        ],
-                        borderRadius: BorderRadius.circular(
-                          20.0,
-                        ),
-                      ),
-                      child: OutlineGradientButton(
-                        strokeWidth: 2,
-                        radius: Radius.circular(15),
-                        gradient: LinearGradient(
-                          colors: [
-                            const Color.fromARGB(109, 143, 142, 142),
-                            const Color.fromARGB(122, 92, 90, 90),
-                            Color.fromARGB(160, 251, 70, 10),
-                            Color.fromARGB(230, 251, 70, 10),
-                          ],
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Container(
-                              margin: EdgeInsets.symmetric(
-                                  horizontal: 2.w, vertical: 0.1.h),
-                              decoration: BoxDecoration(
-                                color: (selectedcategory == "All")
-                                    ? Color.fromRGBO(255, 255, 255, 0.288)
-                                    : const Color.fromARGB(0, 255, 255, 255),
-                                borderRadius: BorderRadius.circular(20.0),
-                              ),
-                              child: InkWell(
-                                radius: 20,
-                                borderRadius: BorderRadius.circular(20.0),
-                                onTap: () {
-                                  setState(() {
-                                    arr = eventItems!;
-                                    selectedcategory = "All";
-                                    day = "0";
-                                  });
-                                },
-                                child: Container(
-                                  height: 8.h,
-                                  width: 13.w,
-                                  // margin: EdgeInsets.symmetric(horizontal: 1),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        "ALL",
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontFamily: 'LemonMilk',
-                                            fontSize: 3.w,
-                                            fontWeight: FontWeight.w500),
-                                      ),
-                                      SizedBox(height: 3),
-                                      Visibility(
-                                        visible: (selectedcategory == "All"),
-                                        child: Container(
-                                          height: 5,
-                                          width: 5,
-                                          decoration: BoxDecoration(
-                                            color: Color.fromRGBO(
-                                                142, 210, 255, 1),
-                                            shape: BoxShape.circle,
-                                          ),
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Container(
-                              margin: EdgeInsets.symmetric(
-                                  horizontal: 2.w, vertical: 0.1.h),
-                              decoration: BoxDecoration(
-                                  color: (selectedcategory == "Workshop")
-                                      ? Color.fromRGBO(255, 255, 255, 0.288)
-                                      : const Color.fromARGB(0, 0, 0, 0),
-                                  borderRadius: BorderRadius.circular(20.0)),
-                              child: InkWell(
-                                radius: 20,
-                                borderRadius: BorderRadius.circular(20.0),
-                                onTap: () {
-                                  setState(() {
-                                    arr = eventItems!
-                                        .where((element) =>
-                                            element.category == "Workshop")
-                                        .toList();
-                                    selectedcategory = "Workshop";
-                                    day = "0";
-                                  });
-                                },
-                                child: Container(
-                                  height: 8.h,
-                                  width: 28.w,
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        "WORKSHOPS",
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontFamily: 'LemonMilk',
-                                            fontSize: 2.8.w,
-                                            fontWeight: FontWeight.w500),
-                                      ),
-                                      SizedBox(height: 3.5),
-                                      Visibility(
-                                        visible:
-                                            (selectedcategory == "Workshop"),
-                                        child: Container(
-                                          height: 8,
-                                          width: 5,
-                                          decoration: BoxDecoration(
-                                              color: Color.fromRGBO(
-                                                  142, 210, 255, 1),
-                                              shape: BoxShape.circle),
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Container(
-                              margin: EdgeInsets.symmetric(
-                                  horizontal: 2.w, vertical: 0.5.h),
-                              decoration: BoxDecoration(
-                                  color: (selectedcategory == "Event")
-                                      ? Color.fromRGBO(255, 255, 255, 0.288)
-                                      : const Color.fromARGB(0, 0, 0, 0),
-                                  borderRadius: BorderRadius.circular(20.0)),
-                              child: InkWell(
-                                radius: 20,
-                                borderRadius: BorderRadius.circular(20.0),
-                                onTap: () {
-                                  setState(() {
-                                    arr = eventItems!
-                                        .where((element) =>
-                                            element.category == "Event")
-                                        .toList();
-                                    selectedcategory = "Event";
-                                    day = "0";
-                                  });
-                                },
-                                child: Container(
-                                  height: 8.h,
-                                  width: 18.w,
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        "EVENTS",
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontFamily: 'LemonMilk',
-                                            fontSize: 3.w,
-                                            fontWeight: FontWeight.w500),
-                                      ),
-                                      SizedBox(height: 3.5),
-                                      Visibility(
-                                        visible: (selectedcategory == "Event"),
-                                        child: Container(
-                                          height: 5,
-                                          width: 5,
-                                          decoration: BoxDecoration(
-                                              color: Color.fromRGBO(
-                                                  142, 210, 255, 1),
-                                              shape: BoxShape.circle),
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Container(
-                              margin: EdgeInsets.symmetric(
-                                  horizontal: 2.w, vertical: 0.5.h),
-                              decoration: BoxDecoration(
-                                  color: (selectedcategory == "Talk")
-                                      ? Color.fromRGBO(255, 255, 255, 0.288)
-                                      : const Color.fromARGB(0, 0, 0, 0),
-                                  borderRadius: BorderRadius.circular(20.0)),
-                              child: InkWell(
-                                radius: 20,
-                                borderRadius: BorderRadius.circular(20.0),
-                                onTap: () {
-                                  setState(() {
-                                    arr = eventItems!
-                                        .where((element) =>
-                                            element.category == "Talk")
-                                        .toList();
-                                    selectedcategory = "Talk";
-                                    day = "0";
-                                  });
-                                },
-                                child: Container(
-                                  height: 8.h,
-                                  width: 15.w,
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        "TALKS",
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontFamily: 'LemonMilk',
-                                            fontSize: 3.w,
-                                            fontWeight: FontWeight.w500),
-                                      ),
-                                      SizedBox(height: 3.5),
-                                      Visibility(
-                                        visible: (selectedcategory == "Talk"),
-                                        child: Container(
-                                          height: 5,
-                                          width: 5,
-                                          decoration: BoxDecoration(
-                                              color: Color.fromRGBO(
-                                                  142, 210, 255, 1),
-                                              shape: BoxShape.circle),
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  Visibility(
-                    visible: !search,
-                    child: Container(
-                        margin: EdgeInsets.only(top: 1.h),
-                        height: 46.h,
-                        child: (arr.length != 0)
-                            ? CarouselSlider.builder(
-                                itemCount: arr.length,
-                                options: CarouselOptions(
-                                  height: 54.h,
-                                  aspectRatio: 1.15,
-                                  viewportFraction: 0.72,
-                                  initialPage: 0,
-                                  enableInfiniteScroll: true,
-                                  reverse: false,
-                                  autoPlay: true,
-                                  autoPlayInterval: Duration(seconds: 3),
-                                  autoPlayAnimationDuration:
-                                      Duration(milliseconds: 800),
-                                  autoPlayCurve: Curves.fastLinearToSlowEaseIn,
-                                  enlargeCenterPage: true,
-                                  scrollDirection: Axis.horizontal,
-                                ),
-                                carouselController: buttonCarouselController,
-                                itemBuilder: (BuildContext context, int index,
-                                        int pageViewIndex) =>
-                                    Column(
+                                    height: 8.h,
+                                    width: 13.w,
+                                    // margin: EdgeInsets.symmetric(horizontal: 1),
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       children: [
-                                        InkWell(
-                                          onTap: () {
-                                            Navigator.pushNamed(
-                                                context, '/eventpage',
-                                                arguments: {
-                                                  'eventItem': arr[index]
-                                                });
-                                          },
+                                        Text(
+                                          "ALL",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontFamily: 'LemonMilk',
+                                              fontSize: 3.w,
+                                              fontWeight: FontWeight.w500),
+                                        ),
+                                        SizedBox(height: 3),
+                                        Visibility(
+                                          visible: (selectedcategory == "All"),
                                           child: Container(
-                                            height: 39.h,
+                                            height: 5,
+                                            width: 5,
                                             decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(10.sp),
+                                              color: Color.fromRGBO(
+                                                  142, 210, 255, 1),
+                                              shape: BoxShape.circle,
                                             ),
-                                            child: ClipRRect(
-                                              borderRadius:
-                                                  BorderRadius.circular(10.sp),
-                                              child: Transform.scale(
-                                                scale: 1.015,
-                                                child: CachedNetworkImage(
-                                                  // height: 100,
-                                                  // width: 120,
-                                                  fit: BoxFit.cover,
-                                                  errorWidget:
-                                                      (context, url, error) {
-                                                    print(
-                                                        "Could not load content");
-                                                    return ClipRRect(
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                margin: EdgeInsets.symmetric(
+                                    horizontal: 2.w, vertical: 0.1.h),
+                                decoration: BoxDecoration(
+                                    color: (selectedcategory == "Workshop")
+                                        ? Color.fromRGBO(255, 255, 255, 0.288)
+                                        : const Color.fromARGB(0, 0, 0, 0),
+                                    borderRadius: BorderRadius.circular(20.0)),
+                                child: InkWell(
+                                  radius: 20,
+                                  borderRadius: BorderRadius.circular(20.0),
+                                  onTap: () {
+                                    setState(() {
+                                      arr = eventItems!
+                                          .where((element) =>
+                                              element.category == "Workshop")
+                                          .toList();
+                                      selectedcategory = "Workshop";
+                                      day = "0";
+                                    });
+                                  },
+                                  child: Container(
+                                    height: 8.h,
+                                    width: 28.w,
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          "WORKSHOPS",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontFamily: 'LemonMilk',
+                                              fontSize: 2.8.w,
+                                              fontWeight: FontWeight.w500),
+                                        ),
+                                        SizedBox(height: 3.5),
+                                        Visibility(
+                                          visible:
+                                              (selectedcategory == "Workshop"),
+                                          child: Container(
+                                            height: 8,
+                                            width: 5,
+                                            decoration: BoxDecoration(
+                                                color: Color.fromRGBO(
+                                                    142, 210, 255, 1),
+                                                shape: BoxShape.circle),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                margin: EdgeInsets.symmetric(
+                                    horizontal: 2.w, vertical: 0.5.h),
+                                decoration: BoxDecoration(
+                                    color: (selectedcategory == "Event")
+                                        ? Color.fromRGBO(255, 255, 255, 0.288)
+                                        : const Color.fromARGB(0, 0, 0, 0),
+                                    borderRadius: BorderRadius.circular(20.0)),
+                                child: InkWell(
+                                  radius: 20,
+                                  borderRadius: BorderRadius.circular(20.0),
+                                  onTap: () {
+                                    setState(() {
+                                      arr = eventItems!
+                                          .where((element) =>
+                                              element.category == "Event")
+                                          .toList();
+                                      selectedcategory = "Event";
+                                      day = "0";
+                                    });
+                                  },
+                                  child: Container(
+                                    height: 8.h,
+                                    width: 18.w,
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          "EVENTS",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontFamily: 'LemonMilk',
+                                              fontSize: 3.w,
+                                              fontWeight: FontWeight.w500),
+                                        ),
+                                        SizedBox(height: 3.5),
+                                        Visibility(
+                                          visible:
+                                              (selectedcategory == "Event"),
+                                          child: Container(
+                                            height: 5,
+                                            width: 5,
+                                            decoration: BoxDecoration(
+                                                color: Color.fromRGBO(
+                                                    142, 210, 255, 1),
+                                                shape: BoxShape.circle),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                margin: EdgeInsets.symmetric(
+                                    horizontal: 2.w, vertical: 0.5.h),
+                                decoration: BoxDecoration(
+                                    color: (selectedcategory == "Talk")
+                                        ? Color.fromRGBO(255, 255, 255, 0.288)
+                                        : const Color.fromARGB(0, 0, 0, 0),
+                                    borderRadius: BorderRadius.circular(20.0)),
+                                child: InkWell(
+                                  radius: 20,
+                                  borderRadius: BorderRadius.circular(20.0),
+                                  onTap: () {
+                                    setState(() {
+                                      arr = eventItems!
+                                          .where((element) =>
+                                              element.category == "Talk")
+                                          .toList();
+                                      selectedcategory = "Talk";
+                                      day = "0";
+                                    });
+                                  },
+                                  child: Container(
+                                    height: 8.h,
+                                    width: 15.w,
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          "TALKS",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontFamily: 'LemonMilk',
+                                              fontSize: 3.w,
+                                              fontWeight: FontWeight.w500),
+                                        ),
+                                        SizedBox(height: 3.5),
+                                        Visibility(
+                                          visible: (selectedcategory == "Talk"),
+                                          child: Container(
+                                            height: 5,
+                                            width: 5,
+                                            decoration: BoxDecoration(
+                                                color: Color.fromRGBO(
+                                                    142, 210, 255, 1),
+                                                shape: BoxShape.circle),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    Visibility(
+                      visible: !search,
+                      child: Container(
+                          margin: EdgeInsets.only(top: 1.h),
+                          height: 46.h,
+                          child: (arr.length != 0)
+                              ? CarouselSlider.builder(
+                                  itemCount: arr.length,
+                                  options: CarouselOptions(
+                                    height: 54.h,
+                                    aspectRatio: 1.15,
+                                    viewportFraction: 0.72,
+                                    initialPage: 0,
+                                    enableInfiniteScroll: true,
+                                    reverse: false,
+                                    autoPlay: true,
+                                    autoPlayInterval: Duration(seconds: 3),
+                                    autoPlayAnimationDuration:
+                                        Duration(milliseconds: 800),
+                                    autoPlayCurve:
+                                        Curves.fastLinearToSlowEaseIn,
+                                    enlargeCenterPage: true,
+                                    scrollDirection: Axis.horizontal,
+                                  ),
+                                  carouselController: buttonCarouselController,
+                                  itemBuilder: (BuildContext context, int index,
+                                          int pageViewIndex) =>
+                                      Column(
+                                        children: [
+                                          InkWell(
+                                            onTap: () {
+                                              Navigator.pushNamed(
+                                                  context, '/eventpage',
+                                                  arguments: {
+                                                    'eventItem': arr[index]
+                                                  });
+                                            },
+                                            child: Container(
+                                              height: 39.h,
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(
+                                                        10.sp),
+                                              ),
+                                              child: ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(
+                                                        10.sp),
+                                                child: Transform.scale(
+                                                  scale: 1.015,
+                                                  child: CachedNetworkImage(
+                                                    // height: 100,
+                                                    // width: 120,
+                                                    fit: BoxFit.cover,
+                                                    errorWidget:
+                                                        (context, url, error) {
+                                                      print(
+                                                          "Could not load content");
+                                                      return ClipRRect(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(
+                                                                    10.sp),
+                                                        child: Image.asset(
+                                                            "assets/placeholder.jpg",
+                                                            height: 40.h,
+                                                            fit: BoxFit.cover),
+                                                      );
+                                                    },
+                                                    placeholder:
+                                                        (context, url) =>
+                                                            ClipRRect(
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               10.sp),
@@ -728,146 +752,140 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                                                           "assets/placeholder.jpg",
                                                           height: 40.h,
                                                           fit: BoxFit.cover),
-                                                    );
-                                                  },
-                                                  placeholder: (context, url) =>
-                                                      ClipRRect(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            10.sp),
-                                                    child: Image.asset(
-                                                        "assets/placeholder.jpg",
-                                                        height: 40.h,
-                                                        fit: BoxFit.cover),
+                                                    ),
+                                                    imageUrl:
+                                                        arr[index].imageUrl!,
                                                   ),
-                                                  imageUrl:
-                                                      arr[index].imageUrl!,
                                                 ),
                                               ),
                                             ),
                                           ),
-                                        ),
-                                        SizedBox(
-                                          height: 1.h,
-                                        ),
-                                        Text(
-                                          textAlign: TextAlign.center,
-                                          "${arr[index].title}",
-                                          style: TextStyle(
-                                              fontFamily: 'Gugi',
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 12.sp,
-                                              letterSpacing: 1.2),
-                                        )
-                                      ],
-                                    ))
-                            : Center(
-                                child: LoadingAnimationWidget.staggeredDotsWave(
-                                  color: Colors.deepOrangeAccent,
-                                  size: 40, // Adjust the size
-                                ),
-                              )),
-                  ),
-                  Visibility(
-                    visible: search,
-                    child: Container(
-                      height: 76.h,
-                      child: (_foundUsers != null && _foundUsers!.isNotEmpty)
-                          ? ListView.builder(
-                              padding: EdgeInsets.only(bottom: 5),
-                              itemCount: _foundUsers!.length,
-                              itemBuilder: (context, index) => Container(
-                                height: 10.h,
-                                padding:
-                                    EdgeInsets.fromLTRB(3.w, 1.h, 3.w, 1.h),
-                                child: InkWell(
-                                  onTap: () {
-                                    FocusManager.instance.primaryFocus!
-                                        .unfocus();
-                                    Navigator.pushNamed(context, '/eventpage',
-                                        arguments: {
-                                          'eventItem': _foundUsers![index]
-                                        });
-                                  },
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      borderRadius:
-                                          BorderRadius.circular(10.sp),
-                                      gradient: LinearGradient(colors: [
-                                        Color.fromRGBO(2, 84, 114, 0.48),
-                                        Color.fromRGBO(29, 95, 117, 0.465),
-                                      ]),
-                                    ),
-                                    child: OutlineGradientButton(
-                                      padding: EdgeInsets.all(0),
-                                      strokeWidth: 2,
-                                      radius: Radius.circular(10),
-                                      gradient: LinearGradient(
-                                        begin: Alignment.bottomLeft,
-                                        end: Alignment.topRight,
-                                        colors: [
-                                          Colors.transparent,
-                                          Colors.grey.shade600,
-                                          Colors.grey.shade600,
-                                          Color.fromARGB(122, 251, 70, 10),
+                                          SizedBox(
+                                            height: 1.h,
+                                          ),
+                                          Text(
+                                            textAlign: TextAlign.center,
+                                            "${arr[index].title}",
+                                            style: TextStyle(
+                                                fontFamily: 'Gugi',
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 12.sp,
+                                                letterSpacing: 1.2),
+                                          )
                                         ],
+                                      ))
+                              : Center(
+                                  child:
+                                      LoadingAnimationWidget.staggeredDotsWave(
+                                    color: Colors.deepOrangeAccent,
+                                    size: 40, // Adjust the size
+                                  ),
+                                )),
+                    ),
+                    Visibility(
+                      visible: search,
+                      child: Container(
+                        height: 76.h,
+                        child: (_foundUsers != null && _foundUsers!.isNotEmpty)
+                            ? ListView.builder(
+                                padding: EdgeInsets.only(bottom: 5),
+                                itemCount: _foundUsers!.length,
+                                itemBuilder: (context, index) => Container(
+                                  height: 10.h,
+                                  padding:
+                                      EdgeInsets.fromLTRB(3.w, 1.h, 3.w, 1.h),
+                                  child: InkWell(
+                                    onTap: () {
+                                      FocusManager.instance.primaryFocus!
+                                          .unfocus();
+                                      Navigator.pushNamed(context, '/eventpage',
+                                          arguments: {
+                                            'eventItem': _foundUsers![index]
+                                          });
+                                    },
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(10.sp),
+                                        gradient: LinearGradient(colors: [
+                                          Color.fromRGBO(2, 84, 114, 0.48),
+                                          Color.fromRGBO(29, 95, 117, 0.465),
+                                        ]),
                                       ),
-                                      child: Row(
-                                        children: [
-                                          Container(
-                                            decoration: BoxDecoration(
-                                              borderRadius: BorderRadius.only(
-                                                  bottomLeft:
-                                                      Radius.circular(10.sp),
-                                                  topLeft:
-                                                      Radius.circular(10.sp)),
-                                            ),
-                                            child: SizedBox(
-                                              width: 23.w,
-                                              height: 23.w,
-                                              child: ClipRRect(
+                                      child: OutlineGradientButton(
+                                        padding: EdgeInsets.all(0),
+                                        strokeWidth: 2,
+                                        radius: Radius.circular(10),
+                                        gradient: LinearGradient(
+                                          begin: Alignment.bottomLeft,
+                                          end: Alignment.topRight,
+                                          colors: [
+                                            Colors.transparent,
+                                            Colors.grey.shade600,
+                                            Colors.grey.shade600,
+                                            Color.fromARGB(122, 251, 70, 10),
+                                          ],
+                                        ),
+                                        child: Row(
+                                          children: [
+                                            Container(
+                                              decoration: BoxDecoration(
                                                 borderRadius: BorderRadius.only(
-                                                  bottomLeft:
-                                                      Radius.circular(10.sp),
-                                                  topLeft:
-                                                      Radius.circular(10.sp),
-                                                ),
-                                                child: FittedBox(
-                                                  fit: BoxFit
-                                                      .cover, // Ensures image covers the entire box
-                                                  child: SizedBox(
-                                                    width: 23.w,
-                                                    height: 23.w,
-                                                    child: Transform.scale(
-                                                      scale:
-                                                          1.01, // Increase this value to zoom more
-                                                      child: CachedNetworkImage(
-                                                        imageUrl:
-                                                            _foundUsers![index]
-                                                                .imageUrl!,
-                                                        fit: BoxFit
-                                                            .cover, // Crops & fills the entire box
-                                                        errorWidget: (context,
-                                                            url, error) {
-                                                          print(
-                                                              "Could not load content");
-                                                          return Image.asset(
+                                                    bottomLeft:
+                                                        Radius.circular(10.sp),
+                                                    topLeft:
+                                                        Radius.circular(10.sp)),
+                                              ),
+                                              child: SizedBox(
+                                                width: 23.w,
+                                                height: 23.w,
+                                                child: ClipRRect(
+                                                  borderRadius:
+                                                      BorderRadius.only(
+                                                    bottomLeft:
+                                                        Radius.circular(10.sp),
+                                                    topLeft:
+                                                        Radius.circular(10.sp),
+                                                  ),
+                                                  child: FittedBox(
+                                                    fit: BoxFit
+                                                        .cover, // Ensures image covers the entire box
+                                                    child: SizedBox(
+                                                      width: 23.w,
+                                                      height: 23.w,
+                                                      child: Transform.scale(
+                                                        scale:
+                                                            1.01, // Increase this value to zoom more
+                                                        child:
+                                                            CachedNetworkImage(
+                                                          imageUrl:
+                                                              _foundUsers![
+                                                                      index]
+                                                                  .imageUrl!,
+                                                          fit: BoxFit
+                                                              .cover, // Crops & fills the entire box
+                                                          errorWidget: (context,
+                                                              url, error) {
+                                                            print(
+                                                                "Could not load content");
+                                                            return Image.asset(
+                                                              "assets/placeholder.jpg",
+                                                              width: 23.w,
+                                                              height: 23.w,
+                                                              fit: BoxFit
+                                                                  .cover, // Ensures the placeholder is also zoomed
+                                                            );
+                                                          },
+                                                          placeholder:
+                                                              (context, url) =>
+                                                                  Image.asset(
                                                             "assets/placeholder.jpg",
                                                             width: 23.w,
                                                             height: 23.w,
                                                             fit: BoxFit
-                                                                .cover, // Ensures the placeholder is also zoomed
-                                                          );
-                                                        },
-                                                        placeholder:
-                                                            (context, url) =>
-                                                                Image.asset(
-                                                          "assets/placeholder.jpg",
-                                                          width: 23.w,
-                                                          height: 23.w,
-                                                          fit: BoxFit
-                                                              .cover, // Ensures consistency
+                                                                .cover, // Ensures consistency
+                                                          ),
                                                         ),
                                                       ),
                                                     ),
@@ -875,315 +893,273 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                                                 ),
                                               ),
                                             ),
-                                          ),
-                                          Expanded(
-                                            child: Container(
-                                              child: Center(
-                                                child: Padding(
-                                                  padding:
-                                                      const EdgeInsets.all(2.0),
-                                                  child: Text(
-                                                    _foundUsers![index]
-                                                        .title
-                                                        .toString(),
-                                                    overflow: TextOverflow.clip,
-                                                    textAlign: TextAlign.center,
-                                                    style: TextStyle(
-                                                        color: const Color
-                                                            .fromARGB(
-                                                            255, 255, 255, 255),
-                                                        fontFamily: 'Mons',
-                                                        letterSpacing: 1.1,
-                                                        fontSize: 13.sp,
-                                                        fontWeight:
-                                                            FontWeight.w400),
+                                            Expanded(
+                                              child: Container(
+                                                child: Center(
+                                                  child: Padding(
+                                                    padding:
+                                                        const EdgeInsets.all(
+                                                            2.0),
+                                                    child: Text(
+                                                      _foundUsers![index]
+                                                          .title
+                                                          .toString(),
+                                                      overflow:
+                                                          TextOverflow.clip,
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      style: TextStyle(
+                                                          color: const Color
+                                                              .fromARGB(255,
+                                                              255, 255, 255),
+                                                          fontFamily: 'Mons',
+                                                          letterSpacing: 1.1,
+                                                          fontSize: 13.sp,
+                                                          fontWeight:
+                                                              FontWeight.w400),
+                                                    ),
                                                   ),
                                                 ),
                                               ),
                                             ),
-                                          ),
-                                        ],
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),
                                 ),
-                              ),
-                            )
-                          : Padding(
-                              padding: EdgeInsets.fromLTRB(4.w, 1.h, 4.w, 1.h),
-                              child: Container(
-                                height: 8.h,
-                                decoration: BoxDecoration(
-                                  border: Border.all(
-                                      color: Colors.white, width: 0.2.w),
-                                  borderRadius: BorderRadius.circular(15.sp),
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    'No results found',
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontFamily: 'Mons',
-                                        letterSpacing: 1.1,
-                                        fontSize: 15.sp,
-                                        fontWeight: FontWeight.w400),
+                              )
+                            : Padding(
+                                padding:
+                                    EdgeInsets.fromLTRB(4.w, 1.h, 4.w, 1.h),
+                                child: Container(
+                                  height: 8.h,
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                        color: Colors.white, width: 0.2.w),
+                                    borderRadius: BorderRadius.circular(15.sp),
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      'No results found',
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontFamily: 'Mons',
+                                          letterSpacing: 1.1,
+                                          fontSize: 15.sp,
+                                          fontWeight: FontWeight.w400),
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
+                      ),
                     ),
-                  ),
-                  Visibility(
+                    Visibility(
+                        visible: !search,
+                        child: Container(
+                          margin: EdgeInsets.only(bottom: 1.5.h),
+                          child: Text(
+                            "Fest Dates",
+                            style: TextStyle(
+                                color: Colors.white,
+                                letterSpacing: 3,
+                                fontFamily: 'AllertaStencil',
+                                fontSize: 27.sp,
+                                fontWeight: FontWeight.w500),
+                          ),
+                        )),
+                    Visibility(
                       visible: !search,
-                      child: Container(
-                        margin: EdgeInsets.only(bottom: 1.5.h),
-                        child: Text(
-                          "Fest Dates",
-                          style: TextStyle(
-                              color: Colors.white,
-                              letterSpacing: 3,
-                              fontFamily: 'AllertaStencil',
-                              fontSize: 27.sp,
-                              fontWeight: FontWeight.w500),
-                        ),
-                      )),
-                  Visibility(
-                    visible: !search,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        InkWell(
-                          radius: 5.sp,
-                          onTap: () {
-                            setState(() {
-                              day = "1st";
-                              selectedcategory = "";
-                              arr = eventItems!
-                                  .where((element) =>
-                                      (DateTime.parse(element.date!).day == 20))
-                                  .toList();
-                            });
-                          },
-                          child: Container(
-                            width: 15.w,
-                            height: 9.h,
-                            decoration: BoxDecoration(
-                                color: (day == "1st")
-                                    ? Color.fromRGBO(51, 130, 154, 0.85)
-                                    : Color.fromRGBO(0, 94, 126, 0.925),
-                                borderRadius: BorderRadius.circular(5.sp)),
-                            child: OutlineGradientButton(
-                              strokeWidth: 2,
-                              radius: Radius.circular(5.sp),
-                              gradient: (day == "1st")
-                                  ? LinearGradient(
-                                      colors: [
-                                        const Color.fromARGB(94, 82, 82, 82),
-                                        const Color.fromARGB(132, 255, 47, 47),
-                                        Color.fromARGB(206, 255, 64, 0),
-                                        Color.fromARGB(220, 255, 64, 0),
-                                      ],
-                                    )
-                                  : LinearGradient(colors: [
-                                      Colors.transparent,
-                                      Colors.transparent
-                                    ]),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text("20",
-                                      style: TextStyle(
-                                          fontFamily: 'Mons',
-                                          fontSize: 15.sp,
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.w500)),
-                                  Text("Thu",
+                      child: Row(
+                        mainAxisAlignment:
+                            MainAxisAlignment.spaceEvenly, // <-- Equi-spaced
+                        children: [
+                          // 1st Date Card
+                          InkWell(
+                            radius: 5.sp,
+                            onTap: () {
+                              setState(() {
+                                day = "1st";
+                                selectedcategory = "";
+                                arr = eventItems!
+                                    .where((element) =>
+                                        (DateTime.parse(element.date!).day ==
+                                            17))
+                                    .toList();
+                              });
+                            },
+                            child: Container(
+                              width: 15.w,
+                              height: 9.h,
+                              decoration: BoxDecoration(
+                                  color: (day == "1st")
+                                      ? Color.fromRGBO(51, 130, 154, 0.85)
+                                      : Color.fromRGBO(0, 94, 126, 0.925),
+                                  borderRadius: BorderRadius.circular(5.sp)),
+                              child: OutlineGradientButton(
+                                strokeWidth: 2,
+                                radius: Radius.circular(5.sp),
+                                gradient: (day == "1st")
+                                    ? LinearGradient(
+                                        colors: [
+                                          const Color.fromARGB(94, 82, 82, 82),
+                                          const Color.fromARGB(
+                                              132, 255, 47, 47),
+                                          Color.fromARGB(206, 255, 64, 0),
+                                          Color.fromARGB(220, 255, 64, 0),
+                                        ],
+                                      )
+                                    : LinearGradient(colors: [
+                                        Colors.transparent,
+                                        Colors.transparent
+                                      ]),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text("17",
+                                        style: TextStyle(
+                                            fontFamily: 'Mons',
+                                            fontSize: 15.sp,
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.w500)),
+                                    Text("Fri",
+                                        style: TextStyle(
+                                            fontFamily: 'Mons',
+                                            fontSize: 12.sp,
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.w500)),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                          // 2nd Date Card
+                          InkWell(
+                            radius: 5.sp,
+                            onTap: () {
+                              setState(() {
+                                day = "2nd";
+                                selectedcategory = "";
+                                arr = eventItems!
+                                    .where((element) =>
+                                        (DateTime.parse(element.date!).day ==
+                                            18))
+                                    .toList();
+                              });
+                            },
+                            child: Container(
+                              width: 15.w,
+                              height: 9.h,
+                              decoration: BoxDecoration(
+                                  color: (day == "2nd")
+                                      ? Color.fromRGBO(51, 130, 154, 0.85)
+                                      : Color.fromRGBO(0, 94, 126, 0.925),
+                                  borderRadius: BorderRadius.circular(5.sp)),
+                              child: OutlineGradientButton(
+                                strokeWidth: 2,
+                                radius: Radius.circular(5.sp),
+                                gradient: (day == "2nd")
+                                    ? LinearGradient(
+                                        colors: [
+                                          const Color.fromARGB(94, 82, 82, 82),
+                                          const Color.fromARGB(
+                                              132, 255, 47, 47),
+                                          Color.fromARGB(206, 255, 64, 0),
+                                          Color.fromARGB(220, 255, 64, 0),
+                                        ],
+                                      )
+                                    : LinearGradient(colors: [
+                                        Colors.transparent,
+                                        Colors.transparent
+                                      ]),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text("18",
+                                        style: TextStyle(
+                                            fontFamily: 'Mons',
+                                            fontSize: 15.sp,
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.w500)),
+                                    Text("Sat",
+                                        style: TextStyle(
+                                            fontFamily: 'Mons',
+                                            fontSize: 12.sp,
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.w500)),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                          // 3rd Date Card
+                          InkWell(
+                            radius: 5.sp,
+                            onTap: () {
+                              setState(() {
+                                day = "3rd";
+                                selectedcategory = "";
+                                arr = eventItems!
+                                    .where((element) =>
+                                        (DateTime.parse(element.date!).day ==
+                                            19))
+                                    .toList();
+                              });
+                            },
+                            child: Container(
+                              width: 15.w,
+                              height: 9.h,
+                              decoration: BoxDecoration(
+                                  color: (day == "3rd")
+                                      ? Color.fromRGBO(51, 130, 154, 0.85)
+                                      : Color.fromRGBO(0, 94, 126, 0.925),
+                                  borderRadius: BorderRadius.circular(5.sp)),
+                              child: OutlineGradientButton(
+                                strokeWidth: 2,
+                                radius: Radius.circular(5.sp),
+                                gradient: (day == "3rd")
+                                    ? LinearGradient(
+                                        colors: [
+                                          const Color.fromARGB(94, 82, 82, 82),
+                                          const Color.fromARGB(
+                                              132, 255, 47, 47),
+                                          Color.fromARGB(206, 255, 64, 0),
+                                          Color.fromARGB(220, 255, 64, 0),
+                                        ],
+                                      )
+                                    : LinearGradient(colors: [
+                                        Colors.transparent,
+                                        Colors.transparent
+                                      ]),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text("19",
+                                        style: TextStyle(
+                                            fontFamily: 'Mons',
+                                            fontSize: 15.sp,
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.w500)),
+                                    Text(
+                                      "Sun",
                                       style: TextStyle(
                                           fontFamily: 'Mons',
                                           fontSize: 12.sp,
                                           color: Colors.white,
-                                          fontWeight: FontWeight.w500)),
-                                ],
+                                          fontWeight: FontWeight.w500),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                        InkWell(
-                          radius: 5.sp,
-                          onTap: () {
-                            setState(() {
-                              day = "2nd";
-                              selectedcategory = "";
-                              arr = eventItems!
-                                  .where((element) =>
-                                      (DateTime.parse(element.date!).day == 21))
-                                  .toList();
-                            });
-                          },
-                          child: Container(
-                            width: 15.w,
-                            height: 9.h,
-                            decoration: BoxDecoration(
-                                color: (day == "2nd")
-                                    ? Color.fromRGBO(51, 130, 154, 0.85)
-                                    : Color.fromRGBO(0, 94, 126, 0.925),
-                                borderRadius: BorderRadius.circular(5.sp)),
-                            child: OutlineGradientButton(
-                              strokeWidth: 2,
-                              radius: Radius.circular(5.sp),
-                              gradient: (day == "2nd")
-                                  ? LinearGradient(
-                                      colors: [
-                                        const Color.fromARGB(94, 82, 82, 82),
-                                        const Color.fromARGB(132, 255, 47, 47),
-                                        Color.fromARGB(206, 255, 64, 0),
-                                        Color.fromARGB(220, 255, 64, 0),
-                                      ],
-                                    )
-                                  : LinearGradient(colors: [
-                                      Colors.transparent,
-                                      Colors.transparent
-                                    ]),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text("21",
-                                      style: TextStyle(
-                                          fontFamily: 'Mons',
-                                          fontSize: 15.sp,
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.w500)),
-                                  Text("Fri",
-                                      style: TextStyle(
-                                          fontFamily: 'Mons',
-                                          fontSize: 12.sp,
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.w500)),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                        InkWell(
-                          radius: 5.sp,
-                          onTap: () {
-                            setState(() {
-                              day = "3rd";
-                              selectedcategory = "";
-                              arr = eventItems!
-                                  .where((element) =>
-                                      (DateTime.parse(element.date!).day == 22))
-                                  .toList();
-                            });
-                          },
-                          child: Container(
-                            width: 15.w,
-                            height: 9.h,
-                            decoration: BoxDecoration(
-                                color: (day == "3rd")
-                                    ? Color.fromRGBO(51, 130, 154, 0.85)
-                                    : Color.fromRGBO(0, 94, 126, 0.925),
-                                borderRadius: BorderRadius.circular(5.sp)),
-                            child: OutlineGradientButton(
-                              strokeWidth: 2,
-                              radius: Radius.circular(5.sp),
-                              gradient: (day == "3rd")
-                                  ? LinearGradient(
-                                      colors: [
-                                        const Color.fromARGB(94, 82, 82, 82),
-                                        const Color.fromARGB(132, 255, 47, 47),
-                                        Color.fromARGB(206, 255, 64, 0),
-                                        Color.fromARGB(220, 255, 64, 0),
-                                      ],
-                                    )
-                                  : LinearGradient(colors: [
-                                      Colors.transparent,
-                                      Colors.transparent
-                                    ]),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text("22",
-                                      style: TextStyle(
-                                          fontFamily: 'Mons',
-                                          fontSize: 15.sp,
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.w500)),
-                                  Text(
-                                    "Sat",
-                                    style: TextStyle(
-                                        fontFamily: 'Mons',
-                                        fontSize: 12.sp,
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.w500),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                        InkWell(
-                          radius: 5.sp,
-                          onTap: () {
-                            setState(() {
-                              day = "4th";
-                              selectedcategory = "";
-                              arr = eventItems!
-                                  .where((element) =>
-                                      (DateTime.parse(element.date!).day == 23))
-                                  .toList();
-                            });
-                          },
-                          child: Container(
-                            width: 15.w,
-                            height: 9.h,
-                            decoration: BoxDecoration(
-                                color: (day == "4th")
-                                    ? Color.fromRGBO(51, 130, 154, 0.85)
-                                    : Color.fromRGBO(0, 94, 126, 0.925),
-                                borderRadius: BorderRadius.circular(5.sp)),
-                            child: OutlineGradientButton(
-                              strokeWidth: 2,
-                              radius: Radius.circular(5.sp),
-                              gradient: (day == "4th")
-                                  ? LinearGradient(
-                                      colors: [
-                                        const Color.fromARGB(94, 82, 82, 82),
-                                        const Color.fromARGB(132, 255, 47, 47),
-                                        Color.fromARGB(206, 255, 64, 0),
-                                        Color.fromARGB(220, 255, 64, 0),
-                                      ],
-                                    )
-                                  : LinearGradient(colors: [
-                                      Colors.transparent,
-                                      Colors.transparent
-                                    ]),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text("23",
-                                      style: TextStyle(
-                                          fontFamily: 'Mons',
-                                          fontSize: 15.sp,
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.w500)),
-                                  Text(
-                                    "Sun",
-                                    style: TextStyle(
-                                        fontFamily: 'Mons',
-                                        fontSize: 12.sp,
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.w500),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                    SizedBox(
+                        height: 8.h), // Add space at the bottom for BottomMenu
+                  ],
+                ),
               ),
               Visibility(visible: !search, child: BottomMenu())
             ]),

@@ -29,7 +29,7 @@ class FirebaseApi {
   /// Initialize Local Notifications for Foreground Messages
   void _initLocalNotifications() {
     const AndroidInitializationSettings androidSettings =
-        AndroidInitializationSettings('@drawable/arrhn_logo2k25');
+        AndroidInitializationSettings('@drawable/aarohan_logo');
 
     final InitializationSettings initSettings = InitializationSettings(
       android: androidSettings,

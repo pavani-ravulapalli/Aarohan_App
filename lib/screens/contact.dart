@@ -1,10 +1,6 @@
-import 'package:aarohan_app/widgets/bottomMenu.dart';
 import 'package:aarohan_app/widgets/topBar.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
-import 'package:aarohan_app/widgets/custom_gesture_detector.dart';
-import 'dart:ui';
-import 'package:from_css_color/from_css_color.dart';
 import 'package:provider/provider.dart';
 import 'package:aarohan_app/models/contact_us.dart';
 import 'package:url_launcher/url_launcher.dart' as UrlLauncher;
@@ -169,8 +165,7 @@ class _ContactState extends State<Contact> {
                                             height: 0.5.h,
                                           ),
                                           Text(
-                                            (contactItems == null ||
-                                                    contactItems.length == 0)
+                                            (contactItems.length == 0)
                                                 ? ''
                                                 : '${contactItems[index].name.split('-')[0]}',
                                             textAlign: TextAlign.center,
@@ -192,8 +187,7 @@ class _ContactState extends State<Contact> {
                                             height: 0.5.h,
                                           ),
                                           Text(
-                                            (contactItems == null ||
-                                                    contactItems.length == 0)
+                                            (contactItems.length == 0)
                                                 ? ''
                                                 : '${contactItems[index].name.split('-')[1]}',
                                             textAlign: TextAlign.center,

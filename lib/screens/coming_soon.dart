@@ -16,7 +16,8 @@ class _ComingState extends State<Coming> {
             decoration: BoxDecoration(
               image: DecorationImage(
                 opacity: 0.7,
-                image: AssetImage("assets/aarhn_new_bg2k25.png"),
+                image: AssetImage(
+                    "assets/Gemini_Generated_Image_ih1t9sih1t9sih1t (1).png"),
                 // colorFilter: new ColorFilter.mode(
                 //     Color.fromARGB(177, 48, 17, 6), BlendMode.srcOver),
                 fit: BoxFit.cover,

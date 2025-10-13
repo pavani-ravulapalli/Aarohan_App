@@ -63,7 +63,6 @@ class InnerDrawer extends StatefulWidget {
       this.innerDrawerCallback,
       this.onDragUpdate})
       : assert(leftChild != null || rightChild != null),
-        assert(scaffold != null),
         super(key: key);
 
   /// Left child
@@ -266,7 +265,7 @@ class InnerDrawerState extends State<InnerDrawer>
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final RenderBox? box =
           _drawerKey.currentContext!.findRenderObject() as RenderBox;
-      if (box != null && box.size != null)
+      if (box != null)
         setState(() {
           _initWidth = box.size.width;
         });
@@ -466,7 +465,6 @@ class InnerDrawerState extends State<InnerDrawer>
 
   /// Trigger Area
   Widget _trigger(AlignmentDirectional alignment, Widget? child) {
-    assert(alignment != null);
     final bool drawerIsStart = _position == InnerDrawerDirection.start;
     final EdgeInsets padding = MediaQuery.of(context).padding;
     double dragAreaWidth = drawerIsStart ? padding.left : padding.right;
@@ -499,7 +497,7 @@ class InnerDrawerState extends State<InnerDrawer>
           excludeFromSemantics: defaultTargetPlatform == TargetPlatform.android,
           onTap: widget.onTapClose || !widget.swipe ? close : null,
           child: Semantics(
-            label: MaterialLocalizations.of(context)?.modalBarrierDismissLabel,
+            label: MaterialLocalizations.of(context).modalBarrierDismissLabel,
             child: container,
           ),
         ),
@@ -548,7 +546,9 @@ class InnerDrawerState extends State<InnerDrawer>
     if (widget.offset != null &&
         (widget.offset!.top > 0 || widget.offset!.bottom > 0)) {
       final double translateY = MediaQuery.of(context).size.height *
-          (widget.offset!.top > 0 ? -widget.offset!.top : widget.offset!.bottom);
+          (widget.offset!.top > 0
+              ? -widget.offset!.top
+              : widget.offset!.bottom);
       container = Transform.translate(
         offset: Offset(0, translateY * (1 - _controller!.value)),
         child: container,
@@ -583,7 +583,7 @@ class InnerDrawerState extends State<InnerDrawer>
       //     stops: [0.5],
       //   ),
       // ),
-      color: widget.backgroundColor ?? Theme.of(context).colorScheme.background,
+      color: widget.backgroundColor ?? Theme.of(context).colorScheme.surface,
       child: Stack(
         alignment: _drawerInnerAlignment!,
         children: <Widget>[

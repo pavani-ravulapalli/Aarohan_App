@@ -1,9 +1,6 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:outline_gradient_button/outline_gradient_button.dart';
 import 'package:sizer/sizer.dart';
-import 'package:from_css_color/from_css_color.dart';
 import 'dart:ui';
 
 class Timeline_List extends StatelessWidget {

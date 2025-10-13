@@ -1,18 +1,14 @@
-import 'dart:developer';
 import 'dart:ui';
 import 'dart:async';
 
-import 'package:aarohan_app/widgets/bottomMenu.dart';
 import 'package:aarohan_app/widgets/topBar.dart';
 import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'package:outline_gradient_button/outline_gradient_button.dart';
 import 'package:provider/provider.dart';
 import 'package:aarohan_app/models/schedule.dart';
 import 'package:aarohan_app/services/sort_timeline.dart';
 import 'package:sizer/sizer.dart';
 import 'package:aarohan_app/widgets/custom_gesture_detector.dart';
-import 'package:from_css_color/from_css_color.dart';
 import 'package:aarohan_app/widgets/timeline_list.dart';
 
 class Timeline extends StatefulWidget {
@@ -66,7 +62,8 @@ class _TimelineState extends State<Timeline> with WidgetsBindingObserver {
             decoration: BoxDecoration(
               image: DecorationImage(
                 opacity: 0.8,
-                image: AssetImage("assets/aarhn_new_bg2k25.png"),
+                image: AssetImage(
+                    "assets/Gemini_Generated_Image_ih1t9sih1t9sih1t (1).png"),
                 fit: BoxFit.cover,
               ),
             ),

@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:aarohan_app/screens/dashboard.dart';
-import 'package:aarohan_app/widgets/splash-rotating-bg.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
@@ -33,7 +32,8 @@ class _SplashState extends State<Splash> {
                 body: Container(
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                        image: AssetImage("assets/aarhn-splash2k25.jpeg"),
+                        image: AssetImage(
+                            "assets/Gemini_Generated_Image_tozc77tozc77tozc.png"),
                         colorFilter: ColorFilter.mode(
                             Color.fromARGB(40, 0, 5, 26), BlendMode.srcOver),
                         fit: BoxFit.cover),
@@ -62,7 +62,7 @@ class _SplashState extends State<Splash> {
                             CircleAvatar(
                               radius: 28.5.w,
                               backgroundImage: AssetImage(
-                                'assets/aarhn_logo2k25.png',
+                                'assets/aarohan_logo.png',
                               ),
                             ),
                           ],
@@ -83,14 +83,14 @@ class _SplashState extends State<Splash> {
                         //   ),
                         // ),
                         child: Image.asset(
-                          'assets/aarhn25-text.png',
+                          'assets/aarohan_text.png',
                           height: 50,
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.all(4.0),
                         child: Text(
-                          'By Team Aavishkar',
+                          'By Team shkar',
                           style: TextStyle(
                             fontFamily: 'Bayon',
                             fontSize: 25,

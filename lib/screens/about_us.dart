@@ -1,13 +1,9 @@
 import 'dart:ui';
 import 'dart:async';
 
-import 'package:aarohan_app/widgets/bottomMenu.dart';
-import 'package:aarohan_app/widgets/custom_gesture_detector.dart';
 import 'package:aarohan_app/widgets/topBar.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
-import 'package:from_css_color/from_css_color.dart';
-import 'package:flutter/services.dart';
 
 class About extends StatefulWidget {
   @override
@@ -63,7 +59,7 @@ class _AboutState extends State<About> with WidgetsBindingObserver {
               image: DecorationImage(
                 opacity: 0.8,
                 image: AssetImage(
-                  "assets/aarhn_new_bg2k25.png",
+                  "assets/Gemini_Generated_Image_ih1t9sih1t9sih1t (1).png",
                 ),
                 // colorFilter: new ColorFilter.mode(
                 //     Color.fromARGB(177, 48, 17, 6), BlendMode.srcOver),
