@@ -58,8 +58,8 @@ class Timeline_List extends StatelessWidget {
                             : Corners(),
                         gradient: LinearGradient(
                           colors: [
-                            Color.fromARGB(255, 255, 110, 48),
                             Colors.white,
+                            Color.fromARGB(124, 59, 58, 58),
                           ],
                           begin: Alignment.topLeft,
                           end: Alignment.bottomRight,

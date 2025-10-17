@@ -32,7 +32,7 @@ class _topBarState extends State<topBar> {
         ),
         gradient: LinearGradient(
           colors: [
-            Color.fromARGB(255, 251, 71, 10),
+            Colors.white,
             Color.fromARGB(124, 59, 58, 58),
           ],
         ),

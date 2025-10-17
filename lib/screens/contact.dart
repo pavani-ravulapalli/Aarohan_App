@@ -27,9 +27,9 @@ class _ContactState extends State<Contact> {
             decoration: BoxDecoration(
               image: DecorationImage(
                   opacity: 0.8,
-                  image: AssetImage("assets/aarhn_new_bg2k25.png"),
+                  image: AssetImage("assets/aarohan_bg.png"),
                   colorFilter: new ColorFilter.mode(
-                      Color.fromARGB(0, 48, 17, 6), BlendMode.srcOver),
+                      Color.fromARGB(88, 9, 75, 87), BlendMode.srcOver),
                   fit: BoxFit.cover),
             ),
             child: Scaffold(

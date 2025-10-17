@@ -5,7 +5,7 @@ description: Annual techno-management fest of NIT Durgapur.
 # pub.dev using `pub publish`. This is preferred for private packages.
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
-version: 5.0.2+51
+version: 6.0.3+53
 
 environment:
   sdk: ">=3.0.0 <=4.3.0"
@@ -46,28 +46,30 @@ dependencies:
   hive_flutter: ^1.1.0
   outline_gradient_button: ^2.0.1+1
   flutter_launcher_icons: ^0.14.3
+  google_fonts: ^4.0.4
 
 flutter_launcher_icons:
   android: "launcher_icon"
   ios: true
-  image_path: "assets/aarhn_logo2k25.png"
+  image_path: "assets/aarohan_logo.png"
+  adaptive_icon_background: "#000000"
   min_sdk_android: 21
   web:
     generate: true
-    image_path: "assets/aarhn_logo2k25.png"
+    image_path: "assets/aarohan_logo.png"
     background_color: "#hexcode"
     theme_color: "#hexcode"
   windows:
     generate: true
-    image_path: "assets/aarhn_logo2k25.png"
+    image_path: "assets/aarohan_logo.png"
     icon_size: 48
   macos:
     generate: true
-    image_path: "assets/aarhn_logo2k25.png"
+    image_path: "assets/aarohan_logo.png"
 
 flutter_icons:
   android: "launcher_icon"
-  image_path: "assets/aarhn_logo2k25.png"
+  image_path: "assets/aarohan_logo.png"
 flutter_test:
   sdk: flutter
 

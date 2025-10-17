@@ -86,7 +86,7 @@ class _Event_DetailState extends State<Event_Detail>
             decoration: BoxDecoration(
               image: DecorationImage(
                   opacity: 0.8,
-                  image: AssetImage("assets/aarhn_new_bg2k25.png"),
+                  image: AssetImage("assets/aarohan_bg.png"),
                   // colorFilter: new ColorFilter.mode(
                   //     Color.fromARGB(177, 48, 17, 6), BlendMode.srcOver),
                   fit: BoxFit.cover),
@@ -139,7 +139,7 @@ class _Event_DetailState extends State<Event_Detail>
                                     ),
                                     padding: EdgeInsets.all(1),
                                     gradient: LinearGradient(colors: [
-                                      Color.fromARGB(255, 251, 71, 10),
+                                      Colors.white,
                                       Color.fromARGB(124, 59, 58, 58),
                                     ]),
                                     strokeWidth: 1.5,
@@ -290,8 +290,7 @@ class _Event_DetailState extends State<Event_Detail>
                                                       colors: [
                                                         Color.fromARGB(
                                                             124, 59, 58, 58),
-                                                        Color.fromARGB(
-                                                            255, 251, 71, 10),
+                                                        Colors.white,
                                                       ],
                                                     ),
                                                     child: GestureDetector(
@@ -362,8 +361,7 @@ class _Event_DetailState extends State<Event_Detail>
                                                       colors: [
                                                         Color.fromARGB(
                                                             124, 59, 58, 58),
-                                                        Color.fromARGB(
-                                                            255, 251, 71, 10),
+                                                        Colors.white,
                                                       ],
                                                     ),
                                                     child: GestureDetector(
@@ -461,8 +459,7 @@ class _Event_DetailState extends State<Event_Detail>
                                                       colors: [
                                                         Color.fromARGB(
                                                             124, 59, 58, 58),
-                                                        Color.fromARGB(
-                                                            255, 251, 71, 10),
+                                                        Colors.white,
                                                       ],
                                                     ),
                                                     child: Row(
@@ -553,8 +550,7 @@ class _Event_DetailState extends State<Event_Detail>
                                                       colors: [
                                                         Color.fromARGB(
                                                             124, 59, 58, 58),
-                                                        Color.fromARGB(
-                                                            255, 251, 71, 10),
+                                                        Colors.white,
                                                       ],
                                                     ),
                                                     child: GestureDetector(
@@ -627,9 +623,7 @@ class _Event_DetailState extends State<Event_Detail>
                                                     color: Colors.black
                                                         .withOpacity(0.15),
                                                     border: Border.all(
-                                                        color: const Color
-                                                            .fromARGB(
-                                                            255, 230, 74, 13),
+                                                        color: Colors.white,
                                                         width:
                                                             2 // Light translucent effect
                                                         ),

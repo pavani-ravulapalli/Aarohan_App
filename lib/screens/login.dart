@@ -3,34 +3,53 @@ import 'package:outline_gradient_button/outline_gradient_button.dart';
 import 'package:sizer/sizer.dart';
 import 'package:aarohan_app/services/auth_services.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:aarohan_app/widgets/background_beams.dart';
 
 class Login extends StatefulWidget {
+  const Login({super.key});
+
   @override
-  _LoginState createState() => _LoginState();
+  State<Login> createState() => _LoginState();
 }
 
-class _LoginState extends State<Login> {
+class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
   bool _isLoading = false;
+  late AnimationController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 8),
+    )..repeat(); // continuous rotation
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   void _handleSignIn() async {
-    setState(() {
-      _isLoading = true;
-    });
+    setState(() => _isLoading = true);
 
     AuthService authService = AuthService();
-    authService.gSignIn().then(
-      (value) {
-        setState(() {
-          _isLoading = false;
-        });
+    authService.gSignIn().then((value) {
+      setState(() => _isLoading = false);
 
-        if (value != null) {
-          Navigator.pushReplacementNamed(context, '/home');
-        } else {
-          print("error in Signin");
-        }
-      },
-    );
+      if (value != null) {
+        Navigator.pushReplacementNamed(context, '/home');
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text("Sign-in failed. Please try again."),
+            behavior: SnackBarBehavior.floating,
+          ),
+        );
+      }
+    });
   }
 
   @override
@@ -38,141 +57,193 @@ class _LoginState extends State<Login> {
     return Sizer(
       builder: (context, orientation, deviceType) {
         return SafeArea(
-          child: Stack(
-            children: [
-              Scaffold(
-                body: Container(
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage(
-                          "assets/Gemini_Generated_Image_tozc77tozc77tozc.png"),
-                      colorFilter: ColorFilter.mode(
-                          Color.fromARGB(40, 0, 5, 26), BlendMode.srcOver),
-                      fit: BoxFit.cover,
-                    ),
+          child: Scaffold(
+            body: Container(
+              width: double.infinity,
+              height: double.infinity,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: const AssetImage("assets/aarohan_splash.png"),
+                  colorFilter: ColorFilter.mode(
+                    const Color.fromARGB(40, 0, 5, 26),
+                    BlendMode.srcOver,
                   ),
-                  child: Column(
-                    children: [
-                      Container(
-                        height: MediaQuery.of(context).size.height * 0.1,
-                      ),
-                      SizedBox(
-                        height: 3.h,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 13.5),
-                        child: Stack(
-                          alignment: Alignment.center,
-                          children: [
-                            // RotatingImage(
-                            //   imagePath: 'assets/aarhn-logo-bg-new-outer.png',
-                            // ),
-                            // RotatingImage(
-                            //   reverse: true,
-                            //   imagePath: 'assets/aarhn-logo-bg-new-inner.png',
-                            // ),
-                            CircleAvatar(
-                              radius: 28.5.w,
-                              backgroundImage: AssetImage(
-                                'assets/aarohan_logo.png',
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: 5.h,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        child: Image.asset(
-                          'assets/aarohan_text.png',
-                          height: 90,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 2.h,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        child: Text(
-                          'By Team Aavishkar',
-                          style: TextStyle(
-                            fontFamily: 'Bayon',
-                            fontSize: 25,
-                            color: Color(0xFFACB9C9),
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 10.h,
-                      ),
-                      Container(
-                        width: 75.w,
-                        height: 7.h,
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            colors: [
-                              Color.fromARGB(186, 47, 117, 138),
-                              Color.fromARGB(181, 2, 54, 71),
-                            ],
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
-                          ),
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                        child: OutlineGradientButton(
-                          onTap: _isLoading
-                              ? null
-                              : _handleSignIn, // Disable button if loading
-                          strokeWidth: 2,
-                          radius: Radius.circular(15),
-                          gradient: LinearGradient(
-                            colors: [
-                              Colors.white12,
-                              Color.fromARGB(255, 251, 71, 10),
-                            ],
-                          ),
-                          child: _isLoading
-                              ? Center(
-                                  child:
-                                      LoadingAnimationWidget.staggeredDotsWave(
-                                    color: Colors.deepOrangeAccent,
-                                    size: 40,
-                                  ),
-                                )
-                              : Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Padding(
-                                      padding:
-                                          const EdgeInsets.fromLTRB(0, 8, 0, 8),
-                                      child: Image(
-                                        image: AssetImage(
-                                          'assets/google-new-1.png',
-                                        ),
-                                      ),
-                                    ),
-                                    Text(
-                                      'Sign In With Google',
-                                      style: TextStyle(
-                                        fontFamily: 'Staat',
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 21,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                        ),
-                      ),
-                    ],
-                  ),
+                  fit: BoxFit.cover,
                 ),
               ),
-            ],
+              child: SingleChildScrollView(
+                physics: const BouncingScrollPhysics(),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(height: 11.h),
+
+                    // 🔹 Spinning ring + static AR logo
+                    Padding(
+                      padding: const EdgeInsets.only(left: 13.5),
+                      child: Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          RotationTransition(
+                            turns: _controller,
+                            child: Image.asset(
+                              'assets/ring.png',
+                              width: 64.w,
+                              height: 64.w,
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 5.5),
+                            child: Image.asset(
+                              'assets/ar.png',
+                              width: 45.w,
+                              height: 45.w,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+
+                    SizedBox(height: 3.h),
+
+                    // 🔹 Aarohan text logo
+                    Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: Image.asset(
+                        'assets/aarohan_text.png',
+                        height: 90,
+                      ),
+                    ),
+
+                    SizedBox(height: 2.h),
+
+                    // 🔹 Subtitle
+                    const Padding(
+                      padding: EdgeInsets.all(4.0),
+                      child: Text(
+                        'By Team Aavishkar',
+                        style: TextStyle(
+                          fontFamily: 'Bayon',
+                          fontSize: 22,
+                          letterSpacing: 1.5,
+                          color: Color(0xFFACB9C9),
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    ),
+
+                    SizedBox(height: 7.h),
+
+                    // 🔹 Sign-in button
+                    Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        // Animated beam border layer
+                        SizedBox(
+                          width: 60.w,
+                          height: 7.h,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(15),
+                            child: CustomPaint(
+                              painter: BeamsPainter(
+                                activeBeams: const [], // This will animate dynamically
+                              ),
+                              child: const SizedBox.expand(),
+                            ),
+                          ),
+                        ),
+
+                        // Button itself
+                        Opacity(
+                          opacity: _isLoading ? 0.8 : 1.0,
+                          child: IgnorePointer(
+                            ignoring: _isLoading,
+                            child: Container(
+                              width: 60.w,
+                              height: 7.h,
+                              decoration: BoxDecoration(
+                                color: Colors.transparent,
+                                borderRadius: BorderRadius.circular(15),
+                              ),
+                              child: OutlineGradientButton(
+                                onTap: _handleSignIn,
+                                strokeWidth: 2,
+                                radius: const Radius.circular(15),
+                                gradient: const LinearGradient(
+                                  colors: [
+                                    Color.fromRGBO(167, 196, 252, 1),
+                                    Color.fromRGBO(177, 196, 252, 1),
+                                    Color.fromRGBO(193, 195, 252, 1),
+                                  ],
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomRight,
+                                ),
+                                child: _isLoading
+                                    ? Center(
+                                        child: LoadingAnimationWidget
+                                            .staggeredDotsWave(
+                                          color: Colors.white,
+                                          size: 40,
+                                        ),
+                                      )
+                                    : Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.fromLTRB(
+                                                0, 8, 0, 8),
+                                            child: Image.asset(
+                                              'assets/google-logo.png',
+                                              width: 28,
+                                              height: 28,
+                                            ),
+                                          ),
+                                          ShaderMask(
+                                            shaderCallback: (bounds) =>
+                                                const LinearGradient(
+                                              colors: [
+                                                Color.fromRGBO(
+                                                    167, 196, 252, 1),
+                                                Color.fromRGBO(
+                                                    177, 196, 252, 1),
+                                                Color.fromRGBO(
+                                                    193, 195, 252, 1),
+                                              ],
+                                              begin: Alignment.topLeft,
+                                              end: Alignment.bottomRight,
+                                            ).createShader(Rect.fromLTWH(
+                                                    0,
+                                                    0,
+                                                    bounds.width,
+                                                    bounds.height)),
+                                            child: const Text(
+                                              'Sign In With Google',
+                                              style: TextStyle(
+                                                fontFamily: 'Staat',
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 21,
+                                                letterSpacing: 0.5,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+
+                    //Opacity( opacity: _isLoading ? 0.8 : 1.0, child: IgnorePointer( ignoring: _isLoading, child: Container( width: 60.w, height: 7.h, decoration: BoxDecoration( color: Colors.transparent, borderRadius: BorderRadius.circular(15), boxShadow: [ BoxShadow( color: Colors.white.withOpacity(0.08), blurRadius: 12, spreadRadius: 2, offset: const Offset(0, 3), ), ], ), child: OutlineGradientButton( onTap: _handleSignIn, strokeWidth: 2, radius: const Radius.circular(15), gradient: const LinearGradient( colors: [ Color.fromARGB(200, 255, 255, 255), Color.fromARGB(80, 255, 255, 255), ], begin: Alignment.topLeft, end: Alignment.bottomRight, ), child: _isLoading ? Center( child: LoadingAnimationWidget .staggeredDotsWave( color: Colors.white, size: 40, ), ) : Row( mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [ Padding( padding: const EdgeInsets.fromLTRB( 0, 8, 0, 8), child: Image.asset( 'assets/google.png', width: 28, height: 28, ), ), ShaderMask( shaderCallback: (bounds) => const LinearGradient( colors: [ Color.fromRGBO(167, 196, 252, 1), Color.fromRGBO(177, 196, 252, 1), Color.fromRGBO(193, 195, 252, 1), ], begin: Alignment.topLeft, end: Alignment.bottomRight, ).createShader(Rect.fromLTWH(0, 0, bounds.width, bounds.height)), child: const Text( 'Sign In With Google', style: TextStyle( fontFamily: 'Staat', color: Colors .white, fontWeight: FontWeight.w400, fontSize: 21, letterSpacing: 0.5, ), ), ) ], ), ), ), ), ),
+
+                    SizedBox(height: 5.h),
+                  ],
+                ),
+              ),
+            ),
           ),
         );
       },

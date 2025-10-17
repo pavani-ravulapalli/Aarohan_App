@@ -1,19 +1,30 @@
 import 'dart:async';
-
 import 'package:aarohan_app/screens/dashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 class Splash extends StatefulWidget {
+  const Splash({super.key});
+
   @override
-  _SplashState createState() => _SplashState();
+  State<Splash> createState() => _SplashState();
 }
 
-class _SplashState extends State<Splash> {
+class _SplashState extends State<Splash> with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+
   @override
   void initState() {
     super.initState();
-    Timer(Duration(seconds: 2), () {
+
+    // 🔹 Rotation animation for the ring
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 8),
+    )..repeat();
+
+    // 🔹 Navigate to Dashboard after 2 seconds
+    Timer(const Duration(seconds: 2), () {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => Dashboard()),
@@ -22,175 +33,88 @@ class _SplashState extends State<Splash> {
   }
 
   @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Sizer(
       builder: (context, orientation, deviceType) {
         return SafeArea(
-          child: Stack(
-            children: [
-              Scaffold(
-                body: Container(
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage(
-                            "assets/Gemini_Generated_Image_tozc77tozc77tozc.png"),
-                        colorFilter: ColorFilter.mode(
-                            Color.fromARGB(40, 0, 5, 26), BlendMode.srcOver),
-                        fit: BoxFit.cover),
+          child: Scaffold(
+            body: Container(
+              width: double.infinity,
+              height: double.infinity,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: const AssetImage("assets/aarohan_splash.png"),
+                  colorFilter: ColorFilter.mode(
+                    const Color.fromARGB(40, 0, 5, 26),
+                    BlendMode.srcOver,
                   ),
-                  child: Column(
-                    // mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                        height: MediaQuery.of(context).size.height * 0.1,
-                      ),
-                      SizedBox(
-                        height: 3.7.h,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 8.0),
-                        child: Stack(
-                          alignment: Alignment.center,
-                          children: [
-                            // RotatingImage(
-                            //   imagePath: 'assets/aarhn-logo-bg-new-outer.png',
-                            // ),
-                            // RotatingImage(
-                            //   reverse: true,
-                            //   imagePath: 'assets/aarhn-logo-bg-new-inner.png',
-                            // ),
-                            CircleAvatar(
-                              radius: 28.5.w,
-                              backgroundImage: AssetImage(
-                                'assets/aarohan_logo.png',
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: 10.h,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        // child: Text(
-                        //   'Aarohan',
-                        //   style: TextStyle(
-                        //     fontFamily: 'UrbanJungle',
-                        //     fontSize: 60,
-                        //     color: Colors.white,
-                        //     fontWeight: FontWeight.bold,
-                        //   ),
-                        // ),
-                        child: Image.asset(
-                          'assets/aarohan_text.png',
-                          height: 50,
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        child: Text(
-                          'By Team shkar',
-                          style: TextStyle(
-                            fontFamily: 'Bayon',
-                            fontSize: 25,
-                            color: Color(0xFFACB9C9),
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 10.h,
-                      ),
-                      // GestureDetector(
-                      //   onTap: () async {
-                      //     AuthService authService = AuthService();
-                      //     authService.gSignIn().then(
-                      //       (value) {
-                      //         if (value != null) {
-                      //           Navigator.pushReplacementNamed(
-                      //               context, '/home');
-                      //         } else {
-                      //           print("error in Signin");
-                      //         }
-                      //       },
-                      //     );
-                      //   },
-                      //   child: Container(
-                      //     // padding: const EdgeInsets.fromLTRB(0, 50, 0, 0),
-                      //     decoration: BoxDecoration(
-                      //       borderRadius: BorderRadius.circular(15),
-                      //       gradient: LinearGradient(
-                      //         colors: [
-                      //           Colors.white,
-                      //           Colors.black,
-                      //         ],
-                      //         begin: Alignment.topCenter,
-                      //         end: Alignment.bottomCenter,
-                      //       ),
-                      //       color: Colors.black,
-                      //     ),
-                      //     child: Container(
-                      //       width: 75.w,
-                      //       height: 7.h,
-                      //       child: Container(
-                      //         decoration: BoxDecoration(
-                      //           border: Border.all(
-                      //             color: Color.fromARGB(255, 101, 170,
-                      //                 254), // rgba(101, 171, 254, 0.32),
-                      //             width: 1,
-                      //           ),
-                      //           // color: Color.fromRGBO(
-                      //           //   101,
-                      //           //   171,
-                      //           //   254,
-                      //           //   0.32,
-                      //           // ),
-                      //           gradient: LinearGradient(
-                      //             colors: [
-                      //               Color.fromARGB(255, 78, 178, 208),
-                      //               Color.fromARGB(255, 16, 59, 73),
-                      //             ],
-                      //             begin: Alignment.topLeft,
-                      //             end: Alignment.bottomRight,
-                      //           ),
-                      //           borderRadius: BorderRadius.circular(
-                      //             15,
-                      //           ),
-                      //         ),
-                      //         child: Row(
-                      //           mainAxisAlignment:
-                      //               MainAxisAlignment.spaceEvenly,
-                      //           children: [
-                      //             Padding(
-                      //               padding:
-                      //                   const EdgeInsets.fromLTRB(0, 8, 0, 8),
-                      //               child: Image(
-                      //                 image: AssetImage(
-                      //                   'assets/google-new-1.png',
-                      //                 ),
-                      //               ),
-                      //             ),
-                      //             Text(
-                      //               'Sign In With Google',
-                      //               style: TextStyle(
-                      //                 fontFamily: 'Staat',
-                      //                 color: Colors.white,
-                      //                 fontWeight: FontWeight.w400,
-                      //                 fontSize: 21,
-                      //               ),
-                      //             ),
-                      //           ],
-                      //         ),
-                      //       ),
-                      //     ),
-                      //   ),
-                      // ),
-                    ],
-                  ),
+                  fit: BoxFit.cover,
                 ),
               ),
-            ],
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  SizedBox(height: 11.h),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 13.5),
+                    child: Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        RotationTransition(
+                          turns: _controller,
+                          child: Image.asset(
+                            'assets/ring.png',
+                            width: 64.w,
+                            height: 64.w,
+                          ),
+                        ),
+                        Image.asset(
+                          'assets/ar.png',
+                          width: 40.w,
+                          height: 40.w,
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  SizedBox(height: 3.h),
+
+                  // 🔹 Aarohan text logo
+                  Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: Image.asset(
+                      'assets/aarohan_text.png',
+                      height: 90,
+                    ),
+                  ),
+
+                  SizedBox(height: 2.h),
+
+                  // 🔹 Subtitle
+                  const Padding(
+                    padding: EdgeInsets.all(4.0),
+                    child: Text(
+                      'By Team Aavishkar',
+                      style: TextStyle(
+                        fontFamily: 'Bayon',
+                        fontSize: 22,
+                        letterSpacing: 1.5,
+                        color: Color(0xFFACB9C9),
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                  ),
+
+                  SizedBox(height: 10.h),
+                ],
+              ),
+            ),
           ),
         );
       },

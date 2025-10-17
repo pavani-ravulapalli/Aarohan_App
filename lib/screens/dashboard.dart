@@ -111,8 +111,7 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
           decoration: BoxDecoration(
             image: DecorationImage(
               //opacity: 0.9,
-              image: AssetImage(
-                  "assets/Gemini_Generated_Image_ih1t9sih1t9sih1t (1).png"),
+              image: AssetImage("assets/aarohan_bg.png"),
               fit: BoxFit.cover,
               colorFilter: new ColorFilter.mode(
                   Color.fromARGB(88, 9, 75, 87), BlendMode.srcOver),
@@ -214,8 +213,7 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                                           Icon(
                                             Icons.cancel,
                                             size: 25.sp,
-                                            color:
-                                                Color.fromRGBO(232, 94, 86, 1),
+                                            color: Colors.white,
                                           ),
                                         ],
                                       ),
@@ -308,8 +306,8 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                             begin: Alignment.bottomLeft,
                             end: Alignment.topRight,
                             colors: [
-                              Color(0xFFFF4E02),
-                              Color.fromARGB(122, 251, 70, 10),
+                              Colors.white,
+                              Colors.white38,
                               Colors.grey.shade800,
                               const Color.fromARGB(110, 175, 175, 175),
                             ],
@@ -447,8 +445,8 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                             colors: [
                               const Color.fromARGB(109, 143, 142, 142),
                               const Color.fromARGB(122, 92, 90, 90),
-                              Color.fromARGB(160, 251, 70, 10),
-                              Color.fromARGB(230, 251, 70, 10),
+                              Colors.white38,
+                              Colors.white,
                             ],
                           ),
                           child: Row(
@@ -778,7 +776,7 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                               : Center(
                                   child:
                                       LoadingAnimationWidget.staggeredDotsWave(
-                                    color: Colors.deepOrangeAccent,
+                                    color: Colors.white,
                                     size: 40, // Adjust the size
                                   ),
                                 )),
@@ -823,8 +821,8 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                                           colors: [
                                             Colors.transparent,
                                             Colors.grey.shade600,
-                                            Colors.grey.shade600,
-                                            Color.fromARGB(122, 251, 70, 10),
+                                            Colors.white38,
+                                            Colors.white,
                                           ],
                                         ),
                                         child: Row(
@@ -1002,11 +1000,11 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                                 gradient: (day == "1st")
                                     ? LinearGradient(
                                         colors: [
-                                          const Color.fromARGB(94, 82, 82, 82),
                                           const Color.fromARGB(
-                                              132, 255, 47, 47),
-                                          Color.fromARGB(206, 255, 64, 0),
-                                          Color.fromARGB(220, 255, 64, 0),
+                                              109, 143, 142, 142),
+                                          const Color.fromARGB(122, 92, 90, 90),
+                                          Colors.white38,
+                                          Colors.white,
                                         ],
                                       )
                                     : LinearGradient(colors: [
@@ -1061,11 +1059,11 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                                 gradient: (day == "2nd")
                                     ? LinearGradient(
                                         colors: [
-                                          const Color.fromARGB(94, 82, 82, 82),
                                           const Color.fromARGB(
-                                              132, 255, 47, 47),
-                                          Color.fromARGB(206, 255, 64, 0),
-                                          Color.fromARGB(220, 255, 64, 0),
+                                              109, 143, 142, 142),
+                                          const Color.fromARGB(122, 92, 90, 90),
+                                          Colors.white38,
+                                          Colors.white,
                                         ],
                                       )
                                     : LinearGradient(colors: [
@@ -1120,11 +1118,11 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                                 gradient: (day == "3rd")
                                     ? LinearGradient(
                                         colors: [
-                                          const Color.fromARGB(94, 82, 82, 82),
                                           const Color.fromARGB(
-                                              132, 255, 47, 47),
-                                          Color.fromARGB(206, 255, 64, 0),
-                                          Color.fromARGB(220, 255, 64, 0),
+                                              109, 143, 142, 142),
+                                          const Color.fromARGB(122, 92, 90, 90),
+                                          Colors.white38,
+                                          Colors.white,
                                         ],
                                       )
                                     : LinearGradient(colors: [

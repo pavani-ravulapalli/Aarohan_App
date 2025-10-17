@@ -28,11 +28,10 @@ class _PrelimsState extends State<Prelims> {
           child: Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage("assets/images/aarohan-bg-new.jpg"),
-                // colorFilter: new ColorFilter.mode(
-                //     Color.fromARGB(177, 48, 17, 6), BlendMode.srcOver),
-                fit: BoxFit.cover,
-              ),
+                  image: AssetImage("assets/aarohan_bg.png"),
+                  colorFilter: new ColorFilter.mode(
+                      Color.fromARGB(88, 9, 75, 87), BlendMode.srcOver),
+                  fit: BoxFit.cover),
             ),
             child: Scaffold(
               resizeToAvoidBottomInset: false,

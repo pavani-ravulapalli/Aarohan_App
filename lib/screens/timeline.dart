@@ -19,7 +19,7 @@ class Timeline extends StatefulWidget {
 class _TimelineState extends State<Timeline> with WidgetsBindingObserver {
   Map<String?, List?> M = {};
   bool showBottomMenu = false;
-  String day = "20th";
+  String day = "17th";
   int x = 0;
   @override
   void initState() {
@@ -62,9 +62,10 @@ class _TimelineState extends State<Timeline> with WidgetsBindingObserver {
             decoration: BoxDecoration(
               image: DecorationImage(
                 opacity: 0.8,
-                image: AssetImage(
-                    "assets/Gemini_Generated_Image_ih1t9sih1t9sih1t (1).png"),
+                image: AssetImage("assets/aarohan_bg.png"),
                 fit: BoxFit.cover,
+                colorFilter: new ColorFilter.mode(
+                    Color.fromARGB(88, 9, 75, 87), BlendMode.srcOver),
               ),
             ),
             child: Scaffold(
@@ -96,340 +97,206 @@ class _TimelineState extends State<Timeline> with WidgetsBindingObserver {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          // InkWell(
-                          //   radius: 20.0,
-                          //   onTap: () {
-                          //     setState(() {
-                          //       day = "9th";
-                          //       M = {};
-                          //       M = sort.func(dayItems[4].events);
-                          //       print(M);
-                          //     });
-                          //   },
-                          //   child: Container(
-                          //     height: 8.h,
-                          //     width: 23.w,
-                          //     decoration: BoxDecoration(
-                          //       color: (day == "9th")
-                          //           ? Color.fromRGBO(252, 252, 252, 0.281)
-                          //           : Colors.transparent,
-                          //       borderRadius: BorderRadius.circular(20.0),
-                          //     ),
-                          //     child: Column(
-                          //       mainAxisAlignment: MainAxisAlignment.center,
-                          //       children: [
-                          //         Text(
-                          //           "9",
-                          //           style: TextStyle(
-                          //             color: Colors.white,
-                          //             fontFamily: 'Staat',
-                          //             fontSize: 18.sp,
-                          //             fontWeight: FontWeight.w500,
-                          //           ),
-                          //         ),
-                          //         SizedBox(height: 3.5),
-                          //         Visibility(
-                          //           visible: (day == "9th"),
-                          //           child: Container(
-                          //             height: 5,
-                          //             width: 5,
-                          //             decoration: BoxDecoration(
-                          //               color: Colors.white,
-                          //               shape: BoxShape.circle,
-                          //             ),
-                          //           ),
-                          //         )
-                          //       ],
-                          //     ),
-                          //   ),
-                          // ),
                           InkWell(
-                              radius: 20.0,
-                              onTap: () {
-                                setState(() {
-                                  day = "20th";
-                                  M = {};
-                                  M = sort.func(dayItems[0].events);
-                                  print(M);
-                                });
-                              },
-                              child: Container(
-                                height: 8.h,
-                                width: 23.w,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20.0),
-                                  color: (day == "20th")
-                                      ? Color.fromRGBO(252, 252, 252,
-                                          0.281) // Light translucent white
-                                      : Colors.transparent,
-                                ),
-                                child: Stack(
-                                  children: [
-                                    if (day ==
-                                        "20th") // Apply blur only when condition is true
-                                      ClipRRect(
-                                        borderRadius: BorderRadius.circular(
-                                            20.0), // Ensures blur stays inside
-                                        child: BackdropFilter(
-                                          filter: ImageFilter.blur(
-                                              sigmaX: 5.0,
-                                              sigmaY: 5.0), // Blur intensity
-                                          child: Container(
-                                            height: 8.h,
-                                            width: 23.w,
-                                            color: Colors
-                                                .transparent, // Keeps the blur effect behind
+                            radius: 20.0,
+                            onTap: () {
+                              setState(() {
+                                day = "17th";
+                                M = {};
+                                M = sort.func(dayItems[0].events);
+                                print(M);
+                              });
+                            },
+                            child: Container(
+                              height: 8.h,
+                              width: 23.w,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20.0),
+                                color: (day == "17th")
+                                    ? Color.fromRGBO(252, 252, 252, 0.281)
+                                    : Colors.transparent,
+                              ),
+                              child: Stack(
+                                children: [
+                                  if (day == "17th")
+                                    ClipRRect(
+                                      borderRadius: BorderRadius.circular(20.0),
+                                      child: BackdropFilter(
+                                        filter: ImageFilter.blur(
+                                            sigmaX: 5.0, sigmaY: 5.0),
+                                        child: Container(
+                                          height: 8.h,
+                                          width: 23.w,
+                                          color: Colors.transparent,
+                                        ),
+                                      ),
+                                    ),
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Center(
+                                        child: Text(
+                                          "17",
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontFamily: 'Staat',
+                                            fontSize: 18.sp,
+                                            fontWeight: FontWeight.w500,
                                           ),
                                         ),
                                       ),
-                                    Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Center(
-                                          child: Text(
-                                            "20",
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                              fontFamily: 'Staat',
-                                              fontSize: 18.sp,
-                                              fontWeight: FontWeight.w500,
-                                            ),
+                                      SizedBox(height: 3.5),
+                                      Visibility(
+                                        visible: (day == "17th"),
+                                        child: Container(
+                                          height: 5,
+                                          width: 5,
+                                          decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            shape: BoxShape.circle,
                                           ),
                                         ),
-                                        SizedBox(height: 3.5),
-                                        Visibility(
-                                          visible: (day == "20th"),
-                                          child: Container(
-                                            height: 5,
-                                            width: 5,
-                                            decoration: BoxDecoration(
-                                              color: Colors.white,
-                                              shape: BoxShape.circle,
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              )),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
                           InkWell(
-                              radius: 20.0,
-                              onTap: () {
+                            radius: 20.0,
+                            onTap: () {
+                              print(dayItems[1].events);
+                              setState(() {
+                                day = "18th";
+                                M = {};
                                 print(dayItems[1].events);
-                                setState(() {
-                                  day = "21th";
-                                  M = {};
-                                  print(dayItems[1].events);
-                                  M = sort.func(dayItems[1].events);
-                                  print(M);
-                                });
-                              },
-                              child: Container(
-                                height: 8.h,
-                                width: 23.w,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20.0),
-                                  color: (day == "21th")
-                                      ? Color.fromRGBO(255, 255, 255,
-                                          0.027) // Light translucent white
-                                      : Colors.transparent,
-                                ),
-                                child: Stack(
-                                  children: [
-                                    if (day ==
-                                        "21th") // Apply blur only when condition is true
-                                      ClipRRect(
-                                        borderRadius: BorderRadius.circular(
-                                            20.0), // Ensures blur stays inside
-                                        child: BackdropFilter(
-                                          filter: ImageFilter.blur(
-                                              sigmaX: 5.0,
-                                              sigmaY: 5.0), // Blur intensity
-                                          child: Container(
-                                            height: 8.h,
-                                            width: 23.w,
-                                            color: Colors
-                                                .transparent, // Keeps the blur effect behind
+                                M = sort.func(dayItems[1].events);
+                                print(M);
+                              });
+                            },
+                            child: Container(
+                              height: 8.h,
+                              width: 23.w,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20.0),
+                                color: (day == "18th")
+                                    ? Color.fromRGBO(255, 255, 255, 0.027)
+                                    : Colors.transparent,
+                              ),
+                              child: Stack(
+                                children: [
+                                  if (day == "18th")
+                                    ClipRRect(
+                                      borderRadius: BorderRadius.circular(20.0),
+                                      child: BackdropFilter(
+                                        filter: ImageFilter.blur(
+                                            sigmaX: 5.0, sigmaY: 5.0),
+                                        child: Container(
+                                          height: 8.h,
+                                          width: 23.w,
+                                          color: Colors.transparent,
+                                        ),
+                                      ),
+                                    ),
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Center(
+                                        child: Text(
+                                          "18",
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontFamily: 'Staat',
+                                            fontSize: 18.sp,
+                                            fontWeight: FontWeight.w500,
                                           ),
                                         ),
                                       ),
-                                    Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Center(
-                                          child: Text(
-                                            "21",
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                              fontFamily: 'Staat',
-                                              fontSize: 18.sp,
-                                              fontWeight: FontWeight.w500,
-                                            ),
+                                      SizedBox(height: 3.5),
+                                      Visibility(
+                                        visible: (day == "18th"),
+                                        child: Container(
+                                          height: 5,
+                                          width: 5,
+                                          decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            shape: BoxShape.circle,
                                           ),
                                         ),
-                                        SizedBox(height: 3.5),
-                                        Visibility(
-                                          visible: (day == "21th"),
-                                          child: Container(
-                                            height: 5,
-                                            width: 5,
-                                            decoration: BoxDecoration(
-                                              color: Colors.white,
-                                              shape: BoxShape.circle,
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              )),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
                           InkWell(
-                              radius: 20.0,
-                              onTap: () {
-                                setState(() {
-                                  day = "22th";
-                                  M = {};
-                                  M = sort.func(dayItems[2].events);
-                                  print(M);
-                                });
-                              },
-                              child: Container(
-                                height: 8.h,
-                                width: 23.w,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20.0),
-                                  color: (day == "22th")
-                                      ? Color.fromRGBO(255, 255, 255,
-                                          0.027) // Light translucent white
-                                      : Colors.transparent,
-                                ),
-                                child: Stack(
-                                  children: [
-                                    if (day ==
-                                        "22th") // Apply blur only when condition is true
-                                      ClipRRect(
-                                        borderRadius: BorderRadius.circular(
-                                            20.0), // Ensures blur stays inside
-                                        child: BackdropFilter(
-                                          filter: ImageFilter.blur(
-                                              sigmaX: 5.0,
-                                              sigmaY: 5.0), // Blur intensity
-                                          child: Container(
-                                            height: 8.h,
-                                            width: 23.w,
-                                            color: Colors
-                                                .transparent, // Keeps the blur effect behind
+                            radius: 20.0,
+                            onTap: () {
+                              setState(() {
+                                day = "19th";
+                                M = {};
+                                M = sort.func(dayItems[2].events);
+                                print(M);
+                              });
+                            },
+                            child: Container(
+                              height: 8.h,
+                              width: 23.w,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20.0),
+                                color: (day == "19th")
+                                    ? Color.fromRGBO(255, 255, 255, 0.027)
+                                    : Colors.transparent,
+                              ),
+                              child: Stack(
+                                children: [
+                                  if (day == "19th")
+                                    ClipRRect(
+                                      borderRadius: BorderRadius.circular(20.0),
+                                      child: BackdropFilter(
+                                        filter: ImageFilter.blur(
+                                            sigmaX: 5.0, sigmaY: 5.0),
+                                        child: Container(
+                                          height: 8.h,
+                                          width: 23.w,
+                                          color: Colors.transparent,
+                                        ),
+                                      ),
+                                    ),
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Center(
+                                        child: Text(
+                                          "19",
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontFamily: 'Staat',
+                                            fontSize: 18.sp,
+                                            fontWeight: FontWeight.w500,
                                           ),
                                         ),
                                       ),
-                                    Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Center(
-                                          child: Text(
-                                            "22",
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                              fontFamily: 'Staat',
-                                              fontSize: 18.sp,
-                                              fontWeight: FontWeight.w500,
-                                            ),
-                                          ),
-                                        ),
-                                        SizedBox(height: 3.5),
-                                        Visibility(
-                                          visible: (day == "22th"),
-                                          child: Container(
-                                            height: 5,
-                                            width: 5,
-                                            decoration: BoxDecoration(
-                                              color: Colors.white,
-                                              shape: BoxShape.circle,
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              )),
-                          InkWell(
-                              radius: 20.0,
-                              onTap: () {
-                                setState(() {
-                                  day = "23th";
-                                  M = {};
-                                  //print(dayItems[3].events);
-                                  M = sort.func(dayItems[3].events);
-                                  print(M);
-                                });
-                              },
-                              child: Container(
-                                height: 8.h,
-                                width: 23.w,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20.0),
-                                  color: (day == "23th")
-                                      ? Color.fromRGBO(252, 252, 252,
-                                          0.281) // Light translucent white
-                                      : Colors.transparent,
-                                ),
-                                child: Stack(
-                                  children: [
-                                    if (day ==
-                                        "23th") // Apply blur only when condition is true
-                                      ClipRRect(
-                                        borderRadius: BorderRadius.circular(
-                                            20.0), // Ensures blur stays inside
-                                        child: BackdropFilter(
-                                          filter: ImageFilter.blur(
-                                              sigmaX: 5.0,
-                                              sigmaY: 5.0), // Blur intensity
-                                          child: Container(
-                                            height: 8.h,
-                                            width: 23.w,
-                                            color: Colors
-                                                .transparent, // Keeps the blur effect behind
+                                      SizedBox(height: 3.5),
+                                      Visibility(
+                                        visible: (day == "19th"),
+                                        child: Container(
+                                          height: 5,
+                                          width: 5,
+                                          decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            shape: BoxShape.circle,
                                           ),
                                         ),
                                       ),
-                                    Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Center(
-                                          child: Text(
-                                            "23",
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                              fontFamily: 'Staat',
-                                              fontSize: 18.sp,
-                                              fontWeight: FontWeight.w500,
-                                            ),
-                                          ),
-                                        ),
-                                        SizedBox(height: 3.5),
-                                        Visibility(
-                                          visible: (day == "23th"),
-                                          child: Container(
-                                            height: 5,
-                                            width: 5,
-                                            decoration: BoxDecoration(
-                                              color: Colors.white,
-                                              shape: BoxShape.circle,
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              )),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
                         ],
                       ),
                     ),

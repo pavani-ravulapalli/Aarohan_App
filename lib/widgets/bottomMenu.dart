@@ -192,10 +192,8 @@ class _BottomMenuState extends State<BottomMenu> {
                                                 Colors.grey.shade500,
                                                 Colors.grey.shade500,
                                                 Colors.grey.shade600,
-                                                Color.fromARGB(
-                                                    255, 253, 71, 10),
-                                                Color.fromARGB(
-                                                    230, 245, 77, 21),
+                                                Colors.white38,
+                                                Colors.white,
                                               ],
                                             ),
                                             child: Column(
@@ -438,10 +436,8 @@ class _BottomMenuState extends State<BottomMenu> {
                                                 Colors.grey.shade500,
                                                 Colors.grey.shade500,
                                                 Colors.grey.shade600,
-                                                Color.fromARGB(
-                                                    255, 253, 71, 10),
-                                                Color.fromARGB(
-                                                    230, 245, 77, 21),
+                                                Colors.white38,
+                                                Colors.white,
                                               ],
                                             ),
                                             child: Column(
@@ -661,10 +657,8 @@ class _BottomMenuState extends State<BottomMenu> {
                                                   Colors.grey.shade500,
                                                   Colors.grey.shade500,
                                                   Colors.grey.shade600,
-                                                  Color.fromARGB(
-                                                      255, 253, 71, 10),
-                                                  Color.fromARGB(
-                                                      230, 245, 77, 21),
+                                                  Colors.white38,
+                                                  Colors.white,
                                                 ],
                                               ),
                                               child: Column(

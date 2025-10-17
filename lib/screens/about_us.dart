@@ -57,14 +57,15 @@ class _AboutState extends State<About> with WidgetsBindingObserver {
           child: Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                opacity: 0.8,
-                image: AssetImage(
-                  "assets/Gemini_Generated_Image_ih1t9sih1t9sih1t (1).png",
-                ),
-                // colorFilter: new ColorFilter.mode(
-                //     Color.fromARGB(177, 48, 17, 6), BlendMode.srcOver),
-                fit: BoxFit.cover,
-              ),
+                  opacity: 0.8,
+                  image: AssetImage(
+                    "assets/aarohan_bg.png",
+                  ),
+                  // colorFilter: new ColorFilter.mode(
+                  //     Color.fromARGB(177, 48, 17, 6), BlendMode.srcOver),
+                  colorFilter: new ColorFilter.mode(
+                      Color.fromARGB(88, 9, 75, 87), BlendMode.srcOver),
+                  fit: BoxFit.cover),
             ),
             child: Scaffold(
               backgroundColor: Colors.transparent,
@@ -100,8 +101,7 @@ class _AboutState extends State<About> with WidgetsBindingObserver {
                                         color: Colors.black.withOpacity(
                                             0.2), // Darker background
                                         border: Border.all(
-                                            color: const Color.fromARGB(
-                                                255, 230, 74, 13),
+                                            color: Colors.white,
                                             width: 2 // Light translucent effect
                                             ),
                                         // Light translucent effect
