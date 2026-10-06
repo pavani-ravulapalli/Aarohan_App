@@ -155,7 +155,7 @@ class _MyAppState extends State<MyApp> {
           // '/game': (context) => gamerunner(),
           '/timeline': (context) => Timeline(),
           '/home': (context) => CountdownScreen(
-           targetTime: DateTime.now().add(const Duration(seconds: 15)), // 5-min test
+           targetTime: DateTime(2026, 10, 9, 0, 0, 0), 
            nextPage: Dashboard(), // Or HomePage()
            ),
           // '/leaderboard': (context) => Leaderboard(),
