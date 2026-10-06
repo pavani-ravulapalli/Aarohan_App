@@ -31,6 +31,14 @@
           }
         },
         {
+          "client_id": "550997604028-jpgqn394kia7ufjdcrr8s5k6lk3e3u0o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.app.aarohan",
+            "certificate_hash": "8d34d23574599e13c8dab73ac500a6f106b332d6"
+          }
+        },
+        {
           "client_id": "550997604028-k2rdda9nv6nlrp94h5apg318aqoqrdrp.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:aarohan_app/screens/countdown_screen.dart';
 import 'package:aarohan_app/screens/dashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
@@ -23,11 +24,18 @@ class _SplashState extends State<Splash> with SingleTickerProviderStateMixin {
       duration: const Duration(seconds: 8),
     )..repeat();
 
-    // 🔹 Navigate to Dashboard after 2 seconds
+    // 🔹 Show the countdown before entering the app, then continue to dashboard.
     Timer(const Duration(seconds: 2), () {
+      if (!mounted) return;
+
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => Dashboard()),
+        MaterialPageRoute(
+          builder: (context) => CountdownScreen(
+            targetTime: DateTime.now().add(const Duration(seconds: 15)),
+            nextPage: Dashboard(),
+          ),
+        ),
       );
     });
   }

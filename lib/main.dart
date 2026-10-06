@@ -28,6 +28,8 @@ import 'package:aarohan_app/models/coming_soon.dart';
 import 'package:aarohan_app/screens/prelims.dart';
 import 'package:aarohan_app/models/prelim.dart';
 import 'package:flutter/services.dart';
+import 'package:aarohan_app/screens/countdown_screen.dart';
+
 
 // Plugin and Initialization Variables
 
@@ -152,7 +154,10 @@ class _MyAppState extends State<MyApp> {
           '/login': (context) => Login(),
           // '/game': (context) => gamerunner(),
           '/timeline': (context) => Timeline(),
-          '/home': (context) => Dashboard(),
+          '/home': (context) => CountdownScreen(
+           targetTime: DateTime.now().add(const Duration(seconds: 15)), // 5-min test
+           nextPage: Dashboard(), // Or HomePage()
+           ),
           // '/leaderboard': (context) => Leaderboard(),
           '/about': (context) => About(),
           '/contributor': (context) => Contributors(),

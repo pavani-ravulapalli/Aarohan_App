@@ -5,6 +5,8 @@ import 'package:aarohan_app/services/auth_services.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:aarohan_app/widgets/background_beams.dart';
+import 'package:aarohan_app/screens/countdown_screen.dart';
+import 'package:aarohan_app/screens/home_page.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -32,15 +34,25 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
     super.dispose();
   }
 
-  void _handleSignIn() async {
+  /*void _handleSignIn() async {
     setState(() => _isLoading = true);
 
     AuthService authService = AuthService();
     authService.gSignIn().then((value) {
+      if (!mounted) return;
       setState(() => _isLoading = false);
 
       if (value != null) {
-        Navigator.pushReplacementNamed(context, '/home');
+        // Navigate to the CountdownScreen instead of direct '/home'
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(
+            builder: (context) => CountdownScreen(
+              // Set your desired target date & time here
+              targetTime: DateTime.now().add(const Duration(seconds:15)), // Example: 15 seconds from now
+              nextPage: HomePage(),
+            ),
+          ),
+        );
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
@@ -48,6 +60,44 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
             behavior: SnackBarBehavior.floating,
           ),
         );
+      }
+    });
+  }*/
+  void _handleSignIn() async {
+    print("=== DEBUG: Login Button Pressed ===");
+    setState(() => _isLoading = true);
+
+    AuthService authService = AuthService();
+    authService.gSignIn().then((value) {
+      print("=== DEBUG: gSignIn returned value: $value ===");
+      
+      if (!mounted) return;
+      setState(() => _isLoading = false);
+
+      if (value != null) {
+        print("=== DEBUG: Navigating to CountdownScreen ===");
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(
+            builder: (context) => CountdownScreen(
+              // Set to 60 seconds from NOW for testing
+              targetTime: DateTime.now().add(const Duration(seconds: 60)),
+              nextPage: HomePage(),
+            ),
+          ),
+        );
+      } else {
+        print("=== DEBUG: Sign-In failed or was cancelled by user ===");
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text("Sign-in failed. Please try again."),
+            behavior: SnackBarBehavior.floating,
+          ),
+        );
+      }
+    }).catchError((error) {
+      print("=== DEBUG: Exception in gSignIn: $error ===");
+      if (mounted) {
+        setState(() => _isLoading = false);
       }
     });
   }
