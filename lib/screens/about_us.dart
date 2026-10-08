@@ -59,12 +59,10 @@ class _AboutState extends State<About> with WidgetsBindingObserver {
               image: DecorationImage(
                   opacity: 0.8,
                   image: AssetImage(
-                    "assets/aarohan_bg.png",
+                    "assets/images/dashbg.png",
                   ),
-                  // colorFilter: new ColorFilter.mode(
-                  //     Color.fromARGB(177, 48, 17, 6), BlendMode.srcOver),
                   colorFilter: new ColorFilter.mode(
-                      Color.fromARGB(88, 9, 75, 87), BlendMode.srcOver),
+                      Color.fromARGB(88, 75, 9, 9), BlendMode.srcOver), // Changed to red shade
                   fit: BoxFit.cover),
             ),
             child: Scaffold(

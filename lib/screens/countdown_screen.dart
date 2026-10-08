@@ -1,7 +1,8 @@
 import 'home_page.dart';
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:video_player/video_player.dart';
+import 'package:sizer/sizer.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class CountdownScreen extends StatefulWidget {
   final DateTime? targetTime;
@@ -20,9 +21,6 @@ class CountdownScreen extends StatefulWidget {
 class _CountdownScreenState extends State<CountdownScreen> {
   Timer? _timer;
   Duration _timeLeft = Duration.zero;
-  late VideoPlayerController _videoController;
-  bool _isVideoInitialized = false;
-
   late final DateTime _targetDate;
 
   @override
@@ -32,25 +30,6 @@ class _CountdownScreenState extends State<CountdownScreen> {
     _targetDate = widget.targetTime ?? DateTime(2026, 10, 9);
     _calculateTimeLeft();
     _startTimer();
-    _initVideoPlayer();
-  }
-
-  void _initVideoPlayer() async {
-    _videoController =
-        VideoPlayerController.asset('assets/videos/countdown_bg.mp4');
-    try {
-      await _videoController.initialize();
-      _videoController.setLooping(true);
-      _videoController.setVolume(0.0);
-      _videoController.play();
-      if (mounted) {
-        setState(() {
-          _isVideoInitialized = true;
-        });
-      }
-    } catch (e) {
-      debugPrint("Error initializing video player: $e");
-    }
   }
 
   void _calculateTimeLeft() {
@@ -100,7 +79,6 @@ class _CountdownScreenState extends State<CountdownScreen> {
   @override
   void dispose() {
     _timer?.cancel();
-    _videoController.dispose();
     super.dispose();
   }
 
@@ -115,36 +93,28 @@ class _CountdownScreenState extends State<CountdownScreen> {
       backgroundColor: Colors.black,
       body: Stack(
         children: [
-          // 1. Full-Screen Background Video Loop
+          // 1. Background Image with Relative Fill
           Positioned.fill(
-            child: _isVideoInitialized
-                ? SizedBox.expand(
-              child: FittedBox(
-                fit: BoxFit.cover,
-                child: SizedBox(
-                  width: _videoController.value.size.width,
-                  height: _videoController.value.size.height,
-                  child: VideoPlayer(_videoController),
-                ),
-              ),
-            )
-                : Container(color: Colors.black),
+            child: Image.asset(
+              'assets/images/lastbg.png',
+              fit: BoxFit.cover,
+            ),
           ),
 
-          // 2. Top-Left Larger Metallic AR Logo
+          // 2. Positioned Widget for the AAROHAN Logo
           Positioned(
-            top: 10,
-            left: 10,
-            child: SafeArea(
+            top: 13.h,
+            left: 12.w,
+            child: SizedBox(
+              width: 75.w,
               child: Image.asset(
-                'assets/aarohan_logo.png',
-                width: 92, // Increased logo size from 70 to 92
+                'assets/images/AAROHAN26.png',
                 fit: BoxFit.contain,
-                errorBuilder: (context, error, stackTrace) => const Text(
-                  "AR",
+                errorBuilder: (context, error, stackTrace) => Text(
+                  "AAROHAN",
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: 32,
+                    fontSize: 22.sp,
                     fontWeight: FontWeight.bold,
                     letterSpacing: 2,
                   ),
@@ -153,10 +123,25 @@ class _CountdownScreenState extends State<CountdownScreen> {
             ),
           ),
 
-          // 3. Central Frame with Scaled-Up Timer
+          // 3. Positioned Widget for the Tagline
+          Positioned(
+            top: 28.h,
+            left: 11.w,
+            child: Text(
+              "RISE BY INSTINCT. RULE BY INNOVATION.",
+              style: TextStyle(
+                color: Colors.white70,
+                fontSize: 11.sp,
+                fontStyle: FontStyle.italic,
+                letterSpacing: 1.2,
+              ),
+            ),
+          ),
+
+          // 4. Central Frame with Scaled-Up Timer
           Center(
             child: SizedBox(
-              width: MediaQuery.of(context).size.width * 0.95, // Wider container
+              width: 95.w,
               child: Stack(
                 alignment: Alignment.center,
                 children: [
@@ -169,7 +154,7 @@ class _CountdownScreenState extends State<CountdownScreen> {
                       'assets/images/frame-removebg-preview.png',
                       fit: BoxFit.contain,
                       errorBuilder: (context, error, stackTrace) => Container(
-                        height: 280,
+                        height: 30.h,
                         decoration: BoxDecoration(
                           color: const Color(0xFF140C10).withValues(alpha: 0.9),
                           border: Border.all(
@@ -181,7 +166,6 @@ class _CountdownScreenState extends State<CountdownScreen> {
                       ),
                     ),
                   ),
-
                   ShaderMask(
                     shaderCallback: (rect) {
                       return const LinearGradient(
@@ -194,12 +178,10 @@ class _CountdownScreenState extends State<CountdownScreen> {
                       fit: BoxFit.contain,
                     ),
                   ),
-
-                  // Timer Units Layer (Scales dynamically inside expanded frame)
                   Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 40.0,
-                      vertical: 10.0, // Expanded vertical padding for large frame fit
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 8.w,
+                      vertical: 1.5.h,
                     ),
                     child: FittedBox(
                       fit: BoxFit.scaleDown,
@@ -226,6 +208,129 @@ class _CountdownScreenState extends State<CountdownScreen> {
               ),
             ),
           ),
+
+          // 5. Bottom Dates Pill Banner with Relative Sizing
+          /*Positioned(
+            bottom: 27.h,
+            left: 0,
+            right: 0,
+            child: Center(
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 1.2.h),
+                decoration: BoxDecoration(
+                  color: Colors.black.withValues(alpha: 0.5),
+                  border: Border.all(
+                    color: const Color(0xFFE52E4D).withValues(alpha: 0.6),
+                    width: 2,
+                  ),
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      "The Countdown Has Begun!",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 10.sp,
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 2.0,
+                        shadows: [
+                          Shadow(
+                            color: const Color(0xFFFF3B5C).withValues(alpha: 0.9),
+                            blurRadius: 20,
+                          ),
+                          Shadow(
+                            color: const Color(0xFFE52E4D).withValues(alpha: 0.8),
+                            blurRadius: 36,
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: 0.4.h),
+                    Text(
+                      "Are You Ready?",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.redAccent,
+                        fontSize: 10.sp,
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 2.0,
+                        shadows: [
+                          Shadow(
+                            color: const Color(0xFFFF3B5C).withValues(alpha: 0.8),
+                            blurRadius: 16,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),*/
+          // Bottom Text Block (Pill Removed)
+          Positioned(
+            bottom: 30.h,
+            left: 0,
+            right: 0,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  "The Countdown Has Begun!",
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.rajdhani(
+                    color: Colors.white,
+                    fontSize: 22.sp,
+                    fontWeight: FontWeight.w900,
+                    fontStyle: FontStyle.italic,
+                    letterSpacing: 0.5,
+                    /*shadows: [
+                      Shadow(
+                        color: const Color(0xFFFF3B5C).withValues(alpha: 0.9),
+                        blurRadius: 20,
+                      ),
+                      Shadow(
+                        color: const Color(0xFFE52E4D).withValues(alpha: 0.8),
+                        blurRadius: 36,
+                      ),
+                    ],*/
+                  ),
+                ),
+                SizedBox(height: 0.1.h),
+                Text(
+                  "Are You Ready?",
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.rajdhani(
+                    color: Colors.redAccent,
+                    fontSize: 22.sp,
+                    fontWeight: FontWeight.bold,
+                    fontStyle: FontStyle.italic,
+                    letterSpacing: 0.5,
+                    /*foreground: Paint()
+                      ..style = PaintingStyle.stroke
+                      ..strokeWidth = 2.0
+                      ..color = Colors.white.withOpacity(0.8),*/
+                    /*shadows: [
+                      Shadow(
+                        color: Colors.white.withOpacity(0.9),
+                        blurRadius: 20,
+                      ),
+                      Shadow(
+                        color: Colors.white.withValues(alpha: 0.6),
+                        blurRadius: 36,
+                      ),
+                    ],*/
+                  ),
+                ),
+      
+              ],
+            ),
+          ),
+
+           
         ],
       ),
     );
@@ -237,7 +342,7 @@ class _CountdownScreenState extends State<CountdownScreen> {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         _buildGlowValue(value),
-        const SizedBox(height: 6),
+        SizedBox(height: 0.8.h),
         _buildLabel(label),
       ],
     );
@@ -247,7 +352,7 @@ class _CountdownScreenState extends State<CountdownScreen> {
     return Text(
       value,
       style: TextStyle(
-        fontSize: 36, // Increased number size from 36 to 52
+        fontSize: 20.sp,
         fontWeight: FontWeight.w900,
         fontFamily: 'monospace',
         color: Colors.white,
@@ -267,11 +372,11 @@ class _CountdownScreenState extends State<CountdownScreen> {
 
   Widget _buildColon() {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 6.0),
+      padding: EdgeInsets.symmetric(horizontal: 1.5.w),
       child: Text(
         ":",
         style: TextStyle(
-          fontSize: 44, // Increased colon size from 32 to 44
+          fontSize: 24.sp,
           fontWeight: FontWeight.bold,
           color: Colors.white,
           shadows: [
@@ -290,7 +395,7 @@ class _CountdownScreenState extends State<CountdownScreen> {
       label,
       style: TextStyle(
         color: const Color(0xFFFF4D6D),
-        fontSize: 12, // Increased label font size from 10 to 12
+        fontSize: 9.sp,
         fontWeight: FontWeight.w900,
         letterSpacing: 2.0,
         shadows: [

@@ -29,9 +29,9 @@ class _ContributorsState extends State<Contributors> {
             decoration: BoxDecoration(
               image: DecorationImage(
                   opacity: 0.8,
-                  image: AssetImage("assets/aarohan_bg.png"),
+                  image: AssetImage("assets/images/dashbg.png"),
                   colorFilter: new ColorFilter.mode(
-                      Color.fromARGB(88, 9, 75, 87), BlendMode.srcOver),
+                      Color.fromARGB(88, 75, 9, 9), BlendMode.srcOver), // Changed to red shade
                   fit: BoxFit.cover),
             ),
             child: Scaffold(
@@ -113,13 +113,12 @@ class _ContributorsState extends State<Contributors> {
                                         ),
                                       ),
                                       Container(
-                                        // height: 8.2.h,
                                         decoration: ShapeDecoration(
                                           gradient: LinearGradient(
                                             begin: Alignment(0.00, -1.00),
                                             end: Alignment(0, 1),
                                             colors: [
-                                              Color(0xFF015174),
+                                              Color(0xFF740101), // Changed from blue to rich red
                                               Colors.black
                                             ],
                                           ),
@@ -207,7 +206,6 @@ class _ContributorsState extends State<Contributors> {
                                                               255),
                                                       size: 2.5.h,
                                                     ))),
-                                                // SizedBox(width: 1.5.w,),
                                                 InkWell(
                                                   onTap: () {
                                                     UrlLauncher.launch(
@@ -221,7 +219,6 @@ class _ContributorsState extends State<Contributors> {
                                                     ),
                                                   ),
                                                 ),
-                                                // SizedBox(width: 1.5.w,),
                                                 InkWell(
                                                   onTap: () {
                                                     UrlLauncher.launch(

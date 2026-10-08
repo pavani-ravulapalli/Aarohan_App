@@ -102,6 +102,21 @@ class _SplashState extends State<Splash> with SingleTickerProviderStateMixin {
                               ),
                             ),
 
+                            SizedBox(height: 1.2.h),
+
+                            // Tagline in Greyish-White
+                            Text(
+                              "Rise by Instinct. Rule by Innovation.",
+                              textAlign: TextAlign.center,
+                              style: GoogleFonts.inter(
+                                fontSize: 11.sp,
+                                fontStyle: FontStyle.italic,
+                                fontWeight: FontWeight.w400,
+                                color: const Color(0xFFD0D0D0), // Sleek greyish-white
+                                letterSpacing: 1.2,
+                              ),
+                            ),
+
                             SizedBox(height: 2.2.h),
 
                             // Subtitle Badge

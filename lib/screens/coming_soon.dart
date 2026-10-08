@@ -15,10 +15,10 @@ class _ComingState extends State<Coming> {
           child: Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                opacity: 0.7,
-                image: AssetImage("assets/aarohan_bg.png"),
-                colorFilter: new ColorFilter.mode(
-                    Color.fromARGB(88, 9, 75, 87), BlendMode.srcOver),
+                /*opacity: 0.7,*/
+                image: AssetImage("assets/images/dashbg.png"),
+                /*colorFilter: new ColorFilter.mode(
+                    Color.fromARGB(88, 9, 75, 87), BlendMode.srcOver),*/
                 fit: BoxFit.cover,
               ),
             ),

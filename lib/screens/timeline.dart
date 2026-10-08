@@ -62,10 +62,10 @@ class _TimelineState extends State<Timeline> with WidgetsBindingObserver {
             decoration: BoxDecoration(
               image: DecorationImage(
                 opacity: 0.8,
-                image: AssetImage("assets/aarohan_bg.png"),
+                image: AssetImage("assets/images/dashbg.png"),
                 fit: BoxFit.cover,
                 colorFilter: new ColorFilter.mode(
-                    Color.fromARGB(88, 9, 75, 87), BlendMode.srcOver),
+                    Color.fromARGB(88, 75, 9, 9), BlendMode.srcOver), // Changed to red shade
               ),
             ),
             child: Scaffold(
@@ -136,7 +136,7 @@ class _TimelineState extends State<Timeline> with WidgetsBindingObserver {
                                     children: [
                                       Center(
                                         child: Text(
-                                          "17",
+                                          "09",
                                           style: TextStyle(
                                             color: Colors.white,
                                             fontFamily: 'Staat',
@@ -204,7 +204,7 @@ class _TimelineState extends State<Timeline> with WidgetsBindingObserver {
                                     children: [
                                       Center(
                                         child: Text(
-                                          "18",
+                                          "10",
                                           style: TextStyle(
                                             color: Colors.white,
                                             fontFamily: 'Staat',
@@ -270,7 +270,7 @@ class _TimelineState extends State<Timeline> with WidgetsBindingObserver {
                                     children: [
                                       Center(
                                         child: Text(
-                                          "19",
+                                          "11",
                                           style: TextStyle(
                                             color: Colors.white,
                                             fontFamily: 'Staat',
@@ -315,10 +315,8 @@ class _TimelineState extends State<Timeline> with WidgetsBindingObserver {
                     ),
                     Expanded(
                       child: Container(
-                        // color: Colors.amber,
                         padding: EdgeInsets.only(top: 3.h),
                         height: 59.h,
-                        // color: Colors.red,
                         child: (M.length != 0)
                             ? ScrollConfiguration(
                                 behavior: ScrollBehavior()
@@ -368,7 +366,7 @@ class _TimelineState extends State<Timeline> with WidgetsBindingObserver {
                             : Center(
                                 child: LoadingAnimationWidget.staggeredDotsWave(
                                   color: Colors.deepOrangeAccent,
-                                  size: 40, // Adjust the size
+                                  size: 40,
                                 ),
                               ),
                       ),

@@ -542,7 +542,7 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
                                     ),
                                     child: Image.asset(
                                       'assets/aarohan_logo.png',
-                                      height: 42,
+                                      height: 60,
                                       fit: BoxFit.contain,
                                     ),
                                   ),
@@ -550,10 +550,10 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
                               ),
 
                               // Team Badge
-                              Container(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 12,
-                                  vertical: 5,
+                              /*Container(
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: 8.w,
+                                  vertical: 2.h,
                                 ),
                                 decoration: BoxDecoration(
                                   color: const Color(0xFFFF1E27)
@@ -567,13 +567,13 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
                                 child: Text(
                                   'BY TEAM AAVISHKAR',
                                   style: GoogleFonts.inter(
-                                    fontSize: 9.5,
+                                    fontSize: 11,
                                     fontWeight: FontWeight.w700,
                                     color: const Color(0xFFFF6B6B),
                                     letterSpacing: 1.5,
                                   ),
                                 ),
-                              ),
+                              ),*/
                             ],
                           ),
                         ),
@@ -597,10 +597,11 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
                                       return Transform.translate(
                                         offset: Offset(
                                           0,
-                                          -6 + (_floatAnimation.value * 12),
+                                          80 + (_floatAnimation.value * 12),
                                         ),
                                         child: Stack(
                                           alignment: Alignment.center,
+
                                           children: [
                                             // Red Backdrop Ambient Glow
                                             Container(
@@ -634,12 +635,37 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
                                                   'Rise by Instinct. Rule by Innovation',
                                                   textAlign: TextAlign.center,
                                                   style: GoogleFonts.inter(
-                                                    fontSize: 13.5,
+                                                    fontSize: 15,
                                                     color: Colors.white
                                                         .withOpacity(0.75),
                                                     letterSpacing: 0.3,
                                                   ),
                                                 ),
+                                                Container(
+
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: 8.w,
+                                  vertical: 2.h,
+                                ),
+                                /*decoration: BoxDecoration(
+                                  color: const Color(0xFFFF1E27)
+                                      .withOpacity(0.10),
+                                  borderRadius: BorderRadius.circular(16),
+                                  border: Border.all(
+                                    color: const Color(0xFFFF1E27)
+                                        .withOpacity(0.35),
+                                  ),
+                                ),*/
+                                child: Text(
+                                  'BY TEAM AAVISHKAR',
+                                  style: GoogleFonts.inter(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w700,
+                                    color: const Color(0xFFAC6A71),
+                                    letterSpacing: 1.5,
+                                  ),
+                                ),
+                              ),
                                               ],
                                             ),
                                           ],
@@ -653,7 +679,7 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
                               SizedBox(height: 7.h),
 
                               // Feature Pills
-                              Wrap(
+                              /*Wrap(
                                 alignment: WrapAlignment.center,
                                 spacing: 10,
                                 runSpacing: 10,
@@ -667,7 +693,7 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
                                   _buildFeaturePill(
                                       Icons.flash_on_outlined, 'Rock Night', 3),
                                 ],
-                              ),
+                              ),*/
 
                               SizedBox(height: 3.h),
                             ],
