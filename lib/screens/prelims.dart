@@ -28,7 +28,7 @@ class _PrelimsState extends State<Prelims> {
           child: Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                  image: AssetImage("assets/aarohan_bg.png"),
+                  image: AssetImage("assets/images/dashbg.png"),
                   colorFilter: new ColorFilter.mode(
                       Color.fromARGB(88, 9, 75, 87), BlendMode.srcOver),
                   fit: BoxFit.cover),

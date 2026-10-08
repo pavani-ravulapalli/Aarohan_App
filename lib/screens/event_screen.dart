@@ -1,4 +1,4 @@
-import 'dart:ui';
+/*import 'dart:ui';
 import 'dart:async';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -662,6 +662,655 @@ class _Event_DetailState extends State<Event_Detail>
                                     ],
                                   ),
                                 ]))
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+}*/
+import 'dart:ui';
+import 'dart:async';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
+import 'package:outline_gradient_button/outline_gradient_button.dart';
+import 'package:sizer/sizer.dart';
+import 'package:aarohan_app/models/user.dart';
+import 'package:aarohan_app/models/event.dart';
+import 'package:aarohan_app/sliver_components/SABT.dart';
+import 'package:url_launcher/url_launcher.dart' as UrlLauncher;
+import 'package:url_launcher/url_launcher_string.dart';
+
+class Event_Detail extends StatefulWidget {
+  @override
+  _Event_DetailState createState() => _Event_DetailState();
+}
+
+GlobalKey<ScaffoldState> _scaffold = GlobalKey<ScaffoldState>();
+
+bool checkCalendar(String eventName, List calendar) {
+  for (var i = 0; i < calendar.length; i++) {
+    if (calendar[i].toString() == eventName) return false;
+  }
+  return true;
+}
+
+class _Event_DetailState extends State<Event_Detail>
+    with WidgetsBindingObserver {
+  Map data = {};
+  bool showBottomMenu = false;
+  Key _widgetKey = UniqueKey();
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+    WidgetsBinding.instance.addPostFrameCallback((_) => _getContainerHeight());
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) {
+      print("App moved to background from Event Detail screen");
+      setState(() {});
+      Timer(Duration(seconds: 1), () {
+        setState(() {
+          _widgetKey = UniqueKey();
+        });
+      });
+    }
+  }
+
+  final GlobalKey _textContainerKey = GlobalKey();
+  double _containerHeight = 0;
+
+  void _getContainerHeight() {
+    final renderBox =
+        _textContainerKey.currentContext?.findRenderObject() as RenderBox?;
+    if (renderBox != null) {
+      setState(() {
+        _containerHeight = renderBox.size.height;
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    Users users = Users.us;
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
+    double threshold = 100;
+    data = ModalRoute.of(context)?.settings.arguments as Map;
+    EventItem eventItem = data['eventItem'];
+    bool vis = checkCalendar(eventItem.title!, users.calendar!);
+    List<String> textsplit = eventItem.contact!.split('-');
+    return Sizer(
+      builder: (context, orientation, deviceType) {
+        return SafeArea(
+          child: Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                  opacity: 0.8,
+                  image: AssetImage("assets/images/dashbg.png"),
+                  fit: BoxFit.cover),
+            ),
+            child: Scaffold(
+              backgroundColor: Colors.transparent,
+              body: Stack(
+                children: [
+                  Column(
+                    children: [
+                      Expanded(
+                        child: Container(
+                          child: ScrollConfiguration(
+                            behavior:
+                                ScrollBehavior().copyWith(overscroll: false),
+                            child: CustomScrollView(
+                              physics: ClampingScrollPhysics(),
+                              slivers: [
+                                SliverAppBar(
+                                  leading: Container(
+                                    padding:
+                                        EdgeInsets.fromLTRB(5.w, 2.h, 0, 0),
+                                    child: InkWell(
+                                      onTap: () {
+                                        Navigator.pop(context);
+                                      },
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          color: const Color.fromARGB(
+                                              216, 246, 100, 100),
+                                        ),
+                                        child: Icon(
+                                          Icons.arrow_back,
+                                          color: Colors.white,
+                                          size: 20.sp,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  flexibleSpace: OutlineGradientButton(
+                                    corners: Corners(
+                                      topLeft: Radius.circular(15),
+                                      topRight: Radius.circular(15),
+                                      bottomLeft: Radius.circular(15),
+                                      bottomRight: Radius.circular(15),
+                                    ),
+                                    padding: EdgeInsets.all(1),
+                                    gradient: LinearGradient(colors: [
+                                      Colors.white,
+                                      Color.fromARGB(124, 58, 58, 58),
+                                    ]),
+                                    strokeWidth: 1.5,
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        gradient: LinearGradient(
+                                          colors: [
+                                            Color.fromARGB(255, 138, 47, 47),
+                                            Color.fromARGB(207, 119, 16, 16),
+                                          ],
+                                          begin: Alignment.topLeft,
+                                          end: Alignment.bottomRight,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(15.0),
+                                        color: Color.fromRGBO(154, 25, 25, 1),
+                                      ),
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(15),
+                                        child: Container(
+                                          child: FlexibleSpaceBar(
+                                            collapseMode: CollapseMode.pin,
+                                            title: SABT(
+                                              child: OverflowBox(
+                                                maxHeight: 10.h,
+                                              child: Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Container(
+                                                    padding:
+                                                        EdgeInsets.fromLTRB(
+                                                            0, 0.5.h, 0, 0),
+                                                    width: 70.w,
+                                                    child: Center(
+                                                      child: Text(
+                                                        eventItem.title!,
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                            maxLines: 1,
+                                                            overflow: TextOverflow.ellipsis,
+                                                        style: TextStyle(
+                                                          color: Colors.white,
+                                                          letterSpacing: 1,
+                                                          fontFamily:
+                                                              'Orbitron',
+                                                          fontSize: 13.sp,
+                                                          fontWeight:
+                                                              FontWeight.w700,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            ),
+                                            background: Container(
+                                              child: CachedNetworkImage(
+                                                imageUrl: eventItem.imageUrl!,
+                                                width: 80.w,
+                                                fit: BoxFit.fitWidth,
+                                                height: 60.h,
+                                                errorWidget:
+                                                    (context, url, error) {
+                                                  print(
+                                                      "Could not load content");
+                                                  return Image.asset(
+                                                    "assets/placeholder.jpg",
+                                                    height: 60.h,
+                                                    width: 80.w,
+                                                    fit: BoxFit.cover,
+                                                  );
+                                                },
+                                                placeholder: (context, url) =>
+                                                    Image.asset(
+                                                  "assets/placeholder.jpg",
+                                                  height: 60.h,
+                                                  width: 80.w,
+                                                  fit: BoxFit.cover,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  pinned: true,
+                                  expandedHeight: 40.h,
+                                  backgroundColor: Colors.transparent,
+                                  collapsedHeight: 8.h,
+                                ),
+                                SliverList(
+                                  delegate: SliverChildListDelegate([
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Padding(
+                                          padding: EdgeInsets.only(
+                                            top: 3.h,
+                                            right: 4.w,
+                                          ),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceEvenly,
+                                            children: [
+                                              InkWell(
+                                                onTap: () async {},
+                                                child: Padding(
+                                                  padding: EdgeInsets.fromLTRB(
+                                                      4.w, 0, 0, 0),
+                                                  child: Container(
+                                                    height: 8.h,
+                                                    width: 43.w,
+                                                    decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius.all(
+                                                                Radius.circular(
+                                                                    10)),
+                                                        gradient: LinearGradient(
+                                                            colors: [
+                                                              Color.fromARGB(185,
+                                                                  189, 105, 105),
+                                                              Color.fromARGB(
+                                                                  244, 75, 8, 8),
+                                                            ])),
+                                                    child: OutlineGradientButton(
+                                                      strokeWidth: 1.5,
+                                                      corners: Corners(
+                                                        topLeft:
+                                                            Radius.circular(10),
+                                                        topRight:
+                                                            Radius.circular(10),
+                                                        bottomLeft:
+                                                            Radius.circular(10),
+                                                        bottomRight:
+                                                            Radius.circular(10),
+                                                      ),
+                                                      gradient: LinearGradient(
+                                                        colors: [
+                                                          Color.fromARGB(
+                                                              124, 58, 58, 58),
+                                                          Colors.white,
+                                                        ],
+                                                      ),
+                                                      child: GestureDetector(
+                                                        child: Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceEvenly,
+                                                          children: [
+                                                            Icon(
+                                                                Icons
+                                                                    .calendar_today,
+                                                                size: 23.5.sp,
+                                                                color:
+                                                                    Colors.white),
+                                                            Text(eventItem.date!,
+                                                                style: TextStyle(
+                                                                    fontSize:
+                                                                        14.sp,
+                                                                    fontFamily:
+                                                                        'Staat',
+                                                                    letterSpacing:
+                                                                        1.1,
+                                                                    color: Colors
+                                                                        .white,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w400))
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              InkWell(
+                                                onTap: () async {},
+                                                child: Padding(
+                                                  padding: EdgeInsets.fromLTRB(
+                                                      4.w, 0, 0, 0),
+                                                  child: Container(
+                                                    height: 8.h,
+                                                    width: 43.w,
+                                                    decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius.all(
+                                                                Radius.circular(
+                                                                    10)),
+                                                        gradient: LinearGradient(
+                                                            colors: [
+                                                              Color.fromARGB(185,
+                                                                  189, 105, 105),
+                                                              Color.fromARGB(
+                                                                  244, 75, 8, 8),
+                                                            ])),
+                                                    child: OutlineGradientButton(
+                                                      strokeWidth: 1.5,
+                                                      corners: Corners(
+                                                        topLeft:
+                                                            Radius.circular(10),
+                                                        topRight:
+                                                            Radius.circular(10),
+                                                        bottomLeft:
+                                                            Radius.circular(10),
+                                                        bottomRight:
+                                                            Radius.circular(10),
+                                                      ),
+                                                      gradient: LinearGradient(
+                                                        colors: [
+                                                          Color.fromARGB(
+                                                              124, 58, 58, 58),
+                                                          Colors.white,
+                                                        ],
+                                                      ),
+                                                      child: GestureDetector(
+                                                        child: Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceEvenly,
+                                                          children: [
+                                                            Icon(
+                                                                Icons
+                                                                    .workspaces_filled,
+                                                                size: 23.5.sp,
+                                                                color:
+                                                                    Colors.white),
+                                                            Text(
+                                                                eventItem
+                                                                    .category!,
+                                                                style: TextStyle(
+                                                                    fontSize:
+                                                                        14.sp,
+                                                                    fontFamily:
+                                                                        'Staat',
+                                                                    letterSpacing:
+                                                                        1.1,
+                                                                    color: Colors
+                                                                        .white,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w400)),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.only(
+                                            top: 1.7.h,
+                                            right: 4.w,
+                                          ),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceAround,
+                                            children: [
+                                              InkWell(
+                                                onTap: () async {
+                                                  final Uri phoneUri = Uri.parse(
+                                                      "tel:${textsplit[0]}");
+
+                                                  try {
+                                                    await UrlLauncher.launchUrl(
+                                                        phoneUri,
+                                                        mode: LaunchMode
+                                                            .externalApplication);
+                                                  } catch (e) {
+                                                    print(
+                                                        "Error launching dialer: $e");
+                                                  }
+                                                },
+                                                child: Padding(
+                                                  padding: EdgeInsets.fromLTRB(
+                                                      4.w, 0, 0, 0),
+                                                  child: Container(
+                                                    height: 8.h,
+                                                    width: 43.w,
+                                                    decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius.all(
+                                                                Radius.circular(
+                                                                    10)),
+                                                        gradient: LinearGradient(
+                                                            colors: [
+                                                              Color.fromARGB(185,
+                                                                  189, 105, 105),
+                                                              Color.fromARGB(
+                                                                  244, 75, 8, 8),
+                                                            ])),
+                                                    child: OutlineGradientButton(
+                                                      strokeWidth: 1.5,
+                                                      corners: Corners(
+                                                        topLeft:
+                                                            Radius.circular(10),
+                                                        topRight:
+                                                            Radius.circular(10),
+                                                        bottomLeft:
+                                                            Radius.circular(10),
+                                                        bottomRight:
+                                                            Radius.circular(10),
+                                                      ),
+                                                      gradient: LinearGradient(
+                                                        colors: [
+                                                          Color.fromARGB(
+                                                              124, 58, 58, 58),
+                                                          Colors.white,
+                                                        ],
+                                                      ),
+                                                      child: Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceEvenly,
+                                                        children: [
+                                                          Icon(
+                                                            Icons.call,
+                                                            size: 23.5.sp,
+                                                            color: Colors.white,
+                                                          ),
+                                                          FittedBox(
+                                                            fit: BoxFit.scaleDown,
+                                                            child: Column(
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .start,
+                                                              children: [
+                                                                Text(textsplit[0],
+                                                                    style: TextStyle(
+                                                                        fontSize:
+                                                                            14.sp,
+                                                                        fontFamily:
+                                                                            'Staat',
+                                                                        letterSpacing:
+                                                                            1.1,
+                                                                        color: Colors
+                                                                            .white,
+                                                                        fontWeight:
+                                                                            FontWeight
+                                                                                .w400)),
+                                                              ],
+                                                            ),
+                                                          )
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              InkWell(
+                                                onTap: () async {},
+                                                child: Padding(
+                                                  padding: EdgeInsets.fromLTRB(
+                                                      4.w, 0, 0, 0),
+                                                  child: Container(
+                                                    height: 8.h,
+                                                    width: 43.w,
+                                                    decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius.all(
+                                                                Radius.circular(
+                                                                    10)),
+                                                        gradient: LinearGradient(
+                                                            colors: [
+                                                              Color.fromARGB(185,
+                                                                  189, 105, 105),
+                                                              Color.fromARGB(
+                                                                  244, 75, 8, 8),
+                                                            ])),
+                                                    child: OutlineGradientButton(
+                                                      strokeWidth: 1.5,
+                                                      corners: Corners(
+                                                        topLeft:
+                                                            Radius.circular(10),
+                                                        topRight:
+                                                            Radius.circular(10),
+                                                        bottomLeft:
+                                                            Radius.circular(10),
+                                                        bottomRight:
+                                                            Radius.circular(10),
+                                                      ),
+                                                      gradient: LinearGradient(
+                                                        colors: [
+                                                          Color.fromARGB(
+                                                              124, 58, 58, 58),
+                                                          Colors.white,
+                                                        ],
+                                                      ),
+                                                      child: GestureDetector(
+                                                        onTap: () {
+                                                          UrlLauncher.launch(
+                                                              "${eventItem.link}");
+                                                        },
+                                                        child: Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceEvenly,
+                                                          children: [
+                                                            Icon(
+                                                                Icons.open_in_new,
+                                                                size: 23.5.sp,
+                                                                color:
+                                                                    Colors.white),
+                                                            Text('Go to Event',
+                                                                style: TextStyle(
+                                                                    fontSize:
+                                                                        14.sp,
+                                                                    fontFamily:
+                                                                        'Staat',
+                                                                    letterSpacing:
+                                                                        1.1,
+                                                                    color: Colors
+                                                                        .white,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w400))
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.fromLTRB(
+                                              5.w, 3.h, 2.w, 0),
+                                          child: Text(eventItem.title!,
+                                              style: TextStyle(
+                                                  fontSize: 19.5.sp,
+                                                  fontFamily: 'B Biger Over',
+                                                  letterSpacing: 1.1,
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.w600)),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.fromLTRB(
+                                              5.w, 3.h, 7.w, 2.h),
+                                          child: Stack(
+                                            children: [
+                                              ClipRRect(
+                                                borderRadius: BorderRadius.circular(
+                                                    10.0),
+                                                child: BackdropFilter(
+                                                  filter: ImageFilter.blur(
+                                                      sigmaX: 55,
+                                                      sigmaY: 55),
+                                                  child: Container(
+                                                    height: _containerHeight,
+                                                    padding: EdgeInsets.all(12.0),
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.black
+                                                          .withOpacity(0.15),
+                                                      border: Border.all(
+                                                          color: Colors.white,
+                                                          width: 2),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10.0),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              Container(
+                                                key: _textContainerKey,
+                                                padding: EdgeInsets.all(10.0),
+                                                child: SingleChildScrollView(
+                                                  physics:
+                                                      ClampingScrollPhysics(),
+                                                  child: Text(
+                                                    eventItem.body!,
+                                                    style: TextStyle(
+                                                      color: Colors.white,
+                                                      letterSpacing: 1.1,
+                                                      fontFamily: 'Poppins',
+                                                      fontSize: 13.5.sp,
+                                                      fontWeight: FontWeight.w400,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ]),
+                                )
                               ],
                             ),
                           ),

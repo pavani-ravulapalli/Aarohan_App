@@ -27,9 +27,9 @@ class _SponsorsState extends State<Sponsors> {
             decoration: BoxDecoration(
               image: DecorationImage(
                   opacity: 0.9,
-                  image: AssetImage("assets/aarohan_bg.png"),
+                  image: AssetImage("assets/images/dashbg.png"),
                   colorFilter: new ColorFilter.mode(
-                      Color.fromARGB(88, 9, 75, 87), BlendMode.srcOver),
+                      Color.fromARGB(88, 75, 9, 9), BlendMode.srcOver), // Changed from blue to red shade
                   fit: BoxFit.cover),
             ),
             child: Scaffold(
@@ -105,8 +105,6 @@ class _SponsorsState extends State<Sponsors> {
                                                 BorderRadius.circular(7.sp),
                                             child: Image.asset(
                                                 "assets/placeholder.jpg",
-
-                                                // height: 60.h,width: 100.w,
                                                 fit: BoxFit.cover),
                                           ),
                                         ),

@@ -45,8 +45,8 @@ class _topBarState extends State<topBar> {
             // color: Color.fromRGBO(25, 102, 154, 0.5),
             gradient: LinearGradient(
               colors: [
-                Color.fromARGB(110, 68, 160, 189),
-                Color.fromARGB(197, 13, 83, 109),
+                Color.fromARGB(255, 138, 47, 47),
+                Color.fromARGB(207, 119, 16, 16),
               ],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
